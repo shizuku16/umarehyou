@@ -30,6 +30,78 @@ color:#000000;}
 </style>
 
 <script type="text/JavaScript">
+dice1=4
+p=0
+m=0
+e=0
+f=0
+g=0
+h=0
+function glow(){
+p++
+m++
+dice1=Math.floor(Math.random()*4);
+dice2=Math.floor(Math.random()*4);
+nouryoku=new Array(document.form1.nouryoku1.value,document.form1.nouryoku2.value,document.form1.nouryoku3.value,document.form1.nouryoku4.value);
+document.form1.seityou1.value = nouryoku[dice1];
+document.form1.seityou2.value = nouryoku[dice2];
+document.form1.log.value += p + "：" + nouryoku[dice1] + "or" + nouryoku[dice2];
+}
+
+function kettei1(){
+if(document.form1.seityou1.value != "終了"){
+if(dice1==0){e++}
+if(dice1==1){f++}
+if(dice1==2){g++}
+if(dice1==3){h++}
+
+document.form1.a.value=e
+document.form1.b.value=f
+document.form1.c.value=g
+document.form1.d.value=h
+document.form1.log.value += "→"+nouryoku[dice1] + "\n"
+document.form1.ato1.value=e+Number(document.form1.mae1.value)
+document.form1.ato2.value=f+Number(document.form1.mae2.value)
+document.form1.ato3.value=g+Number(document.form1.mae3.value)
+document.form1.ato4.value=h+Number(document.form1.mae4.value)
+}
+
+if(document.form1.n.value >m){glow()}
+else{document.form1.seityou1.value = "終了";document.form1.seityou2.value = "終了";dice1=4;dice2=4}
+}
+
+function kettei2(){
+if(document.form1.seityou1.value != "終了"){
+if(dice2==0){e++}
+if(dice2==1){f++}
+if(dice2==2){g++}
+if(dice2==3){h++}
+
+document.form1.a.value=e
+document.form1.b.value=f
+document.form1.c.value=g
+document.form1.d.value=h
+document.form1.log.value += "→"+nouryoku[dice2] + "\n"
+document.form1.ato1.value=e+Number(document.form1.mae1.value)
+document.form1.ato2.value=f+Number(document.form1.mae2.value)
+document.form1.ato3.value=g+Number(document.form1.mae3.value)
+document.form1.ato4.value=h+Number(document.form1.mae4.value)
+}
+
+if(document.form1.n.value >m){glow()}else{document.form1.seityou1.value = "終了";document.form1.seityou2.value = "終了";dice1=4;dice2=4}
+}
+
+function re(){
+e=0
+f=0
+g=0
+h=0
+document.form1.a.value=e
+document.form1.b.value=f
+document.form1.c.value=g
+document.form1.d.value=h
+}
+
 </script>
 </head>
 
@@ -215,7 +287,7 @@ color:#000000;}
 <tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=gakusya">学者</a></td><td>セージ</td><td>11</td><td>1</td><td>13</td></tr></thead>
 <tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>14</td><td>2</td><td>9</td></tr>
 <tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=tabibito">旅人</a></td><td>なし</td><td>11</td><td>2</td><td>12</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=mittei">密偵</a></td><td>フェンサーandスカウト</td><td>15</td><td>0</td><td>10</td></tr>
+<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=mittei">密偵</a></td><td>フェンサーandスカウト　　</td><td>15</td><td>0</td><td>10</td></tr>
 <tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>12</td><td>0</td><td>13</td></tr></thead>
 <tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=kisyu">騎手</a></td><td>ライダー</td><td>13</td><td>1</td><td>11</td></tr>
 <tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>13</td><td>0</td><td>12</td></tr></thead>
@@ -441,6 +513,315 @@ color:#000000;}
 	</tr>
 <tr><td colspan="5"  class="blind">　</td></tr>
 </table>
+　　　
+<table>
+<tbody><tr><th colspan="5"  align="center">アルヴ</th></tr></tbody>
+<tr class="cell"><th>生まれ</th><th>技能</th><th>技</th><th>体</th><th>心</th></tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=mittei">密偵</a></td>
+		<td>スカウト</td>
+		<td>12</td>
+		<td>5</td>
+		<td>8</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=keisensi">軽戦士</a></td>
+		<td>フェンサー</td>
+		<td>12</td>
+		<td>6</td>
+		<td>7</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=mahoutukai">魔法使い</a></td>
+		<td>ソーサラー</td>
+		<td>9</td>
+		<td>5</td>
+		<td>11</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=sinkan">神官</a></td>
+		<td>プリースト</td>
+		<td>10</td>
+		<td>6</td>
+		<td>9</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=gakusya">学者</a></td>
+		<td>セージ</td>
+		<td>10</td>
+		<td>5</td>
+		<td>10</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=syasyu">射手</a></td>
+		<td>シューター</td>
+		<td>13</td>
+		<td>4</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=kentousi">拳闘士</a></td>
+		<td>グラップラー</td>
+		<td>11</td>
+		<td>7</td>
+		<td>7</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=soureizyutusi">操霊術師</a></td>
+		<td>コンジャラー</td>
+		<td>9</td>
+		<td>4</td>
+		<td>12</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=mazintukai">魔神使い</a></td>
+		<td>デーモンルーラー　　　　　</td>
+		<td>9</td>
+		<td>6</td>
+		<td>10</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=madoukisi">魔動機師</a></td>
+		<td>マギテック</td>
+		<td>9</td>
+		<td>7</td>
+		<td>9</td>
+	</tr>
+<tr><td colspan="5"  class="blind">　</td></tr>
+</table>
+
+　　　
+<table>
+<tbody><tr><th colspan="5"  align="center">ウィークリング</th></tr></tbody>
+<tr class="cell"><th>生まれ</th><th>技能</th><th>技</th><th>体</th><th>心</th></tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=haiseki">斥候</a></td>
+		<td>スカウト</td>
+		<td>10</td>
+		<td>7</td>
+		<td>6</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=keisensi">軽戦士</a></td>
+		<td>フェンサー</td>
+		<td>9</td>
+		<td>8</td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=sensi">戦士</a></td>
+		<td>ファイター</td>
+		<td>8</td>
+		<td>10</td>
+		<td>5</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=sinkan">神官</a></td>
+		<td>プリースト</td>
+		<td>7</td>
+		<td>9</td>
+		<td>7</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=mahoutukai">魔法使い</a></td>
+		<td>ソーサラー</td>
+		<td>7</td>
+		<td>8</td>
+		<td>8</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=rentaisi">錬体士</a></td>
+		<td>エンハンサー</td>
+		<td>8</td>
+		<td>8</td>
+		<td>7</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=syasyu">射手</a></td>
+		<td>シューター</td>
+		<td>10</td>
+		<td>8</td>
+		<td>5</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=kentousi">拳闘士</a></td>
+		<td>グラップラー</td>
+		<td>9</td>
+		<td>9</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=sinradousi">森羅導師</a></td>
+		<td>ドルイド</td>
+		<td>7</td>
+		<td>7</td>
+		<td>9</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=mazintukai">魔神使い</a></td>
+		<td>デーモンルーラー　　　　　</td>
+		<td>7</td>
+		<td>8</td>
+		<td>8</td>
+	</tr>
+
+<tr><td colspan="5"  class="blind">　</td></tr>
+</table>
+　　　
+<table>
+<tbody><tr><th colspan="5"  align="center">シャドウ</th></tr></tbody>
+<tr class="cell"><th>生まれ</th><th>技能</th><th>技</th><th>体</th><th>心</th></tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=nobuse">野伏</a></td>
+		<td>レンジャー</td>
+		<td>15</td>
+		<td>6</td>
+		<td>6</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=kensi">剣士</a></td>
+		<td>フェンサー</td>
+		<td>17</td>
+		<td>7</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=mittei">密偵</a></td>
+		<td>スカウト</td>
+		<td>16</td>
+		<td>7</td>
+		<td>4</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=kentousi">拳闘士</a></td>
+		<td>グラップラー</td>
+		<td>14</td>
+		<td>8</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=sensi">戦士</a></td>
+		<td>ファイター</td>
+		<td>15</td>
+		<td>9</td>
+		<td>3</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=madoukisi">魔動機師</a></td>
+		<td>マギテック</td>
+		<td>17</td>
+		<td>5</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=syasyu">射手</a></td>
+		<td>シューター</td>
+		<td>18</td>
+		<td>6</td>
+		<td>3</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=rentaisi">錬体士</a></td>
+		<td>エンハンサー</td>
+		<td>16</td>
+		<td>6</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=renkinzyutusi">錬金術師</a></td>
+		<td>アルケミスト　　　　　　　</td>
+		<td>14</td>
+		<td>8</td>
+		<td>5</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=kisyu">騎手</a></td>
+		<td>ライダー</td>
+		<td>13</td>
+		<td>7</td>
+		<td>7</td>
+	</tr>
+<tr><td colspan="5"  class="blind">　</td></tr>
+</table>
+　　　
+<table>
+<tbody><tr><th colspan="5"  align="center">ソレイユ</th></tr></tbody>
+<tr class="cell"><th>生まれ</th><th>技能</th><th>技</th><th>体</th><th>心</th></tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=sinkan">神官</a></td>
+		<td>プリースト</td>
+		<td>9</td>
+		<td>13</td>
+		<td>4</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=keisensi">軽戦士</a></td>
+		<td>フェンサー</td>
+		<td>12</td>
+		<td>12</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=sensi">戦士</a></td>
+		<td>ファイター</td>
+		<td>10</td>
+		<td>15</td>
+		<td>1</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=kentousi">拳闘士</a></td>
+		<td>グラップラー</td>
+		<td>12</td>
+		<td>14</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=nobuse">野伏</a></td>
+		<td>レンジャー</td>
+		<td>10</td>
+		<td>13</td>
+		<td>3</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=syasyu">射手</a></td>
+		<td>シューター</td>
+		<td>11</td>
+		<td>14</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=kisyu">騎手</a></td>
+		<td>ライダー</td>
+		<td>11</td>
+		<td>13</td>
+		<td>2</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=renkinzyutusi">錬金術師</a></td>
+		<td>アルケミスト　　　　　　　　</td>
+		<td>10</td>
+		<td>11</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=syumizin">趣味人</a></td>
+		<td>バード</td>
+		<td>11</td>
+		<td>11</td>
+		<td>4</td>
+	</tr>
+	<tr class="cell">
+		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=haiseki">斥候</a></td>
+		<td>スカウト</td>
+		<td>12</td>
+		<td>11</td>
+		<td>3</td>
+	</tr>
+<tr><td colspan="5"  class="blind">　</td></tr>
+</table>
+
+
+
 
 <br>
 </form>
