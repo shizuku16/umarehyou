@@ -1,754 +1,1549 @@
 <html>
 <head>
-<title>種族能力値</title>
+<title>初期ステータス</title>
 <style>
-td,th{border:solid 1px #aaaaaa;padding:1px 10px}
+td,th{border:solid 1px #aaaaaa;padding:1px 10px;text-align:center} 
 table{border-collapse:collapse;}
 input[type=radio]{width:15px;height:15px;}:disabled{
 -webkit-appearance:none;	
 color:#000000;}
-.cell {
-    background-color: #dcdcdc;
-    color: #000000;
-}
-.hyou  {
-  display:flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-  height: 500px;
-}
-.hyou2  {
-  display:;
-}
-
-.blind{
- border-bottom: 3px solid white;
- border-left: 3px solid white;
- border-right: 3px solid white;
-}
 
 </style>
+<script type="text/JavaScript">
+function uketori(){
+var url=new URL(window.location.href)
+syuzoku=url.searchParams.get("syuzoku")
+umare=url.searchParams.get("umare")
+if(syuzoku=="ningen"){
+	document.form1.syuzoku.value="人間"
+	document.form1.ningenumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="eruhu"){
+	document.form1.syuzoku.value="エルフ"
+	document.form1.eruhuumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="dowahu"){
+	document.form1.syuzoku.value="ドワーフ"
+	document.form1.dowahuumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="tabitto"){
+	document.form1.syuzoku.value="タビット"
+	document.form1.tabittoumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="runfoku"){
+	document.form1.syuzoku.value="ルーンフォーク"
+	document.form1.runfokuumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="naitomea"){
+	document.form1.syuzoku.value="ナイトメア"
+	document.form1.naitomeaumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="rikanto"){
+	document.form1.syuzoku.value="リカント"
+	document.form1.rikantoumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="rirudoraken"){
+	document.form1.syuzoku.value="リルドラケン"
+	document.form1.rirudorakenumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="rikanto"){
+	document.form1.syuzoku.value="グラスランナー"
+	document.form1.gurasurannaumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="meria"){
+	document.form1.syuzoku.value="メリア"
+	document.form1.meriaumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="thiensu"){
+	document.form1.syuzoku.value="ティエンス"
+	document.form1.thiensuumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="repurakan"){
+	document.form1.syuzoku.value="レプラカーン"
+	document.form1.repurakanumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="aruvu"){
+	document.form1.syuzoku.value="アルヴ"
+	document.form1.aruvuumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="wikuringu"){
+	document.form1.syuzoku.value="ウィークリング"
+	document.form1.wikuringuumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="syadou"){
+	document.form1.syuzoku.value="シャドウ"
+	document.form1.syadouumare.value=umare
+	syuzokukettei()
+}
+if(syuzoku=="soreiyu"){
+	document.form1.syuzoku.value="ソレイユ"
+	document.form1.soreiyuumare.value=umare
+	syuzokukettei()
+}
+	
+
+}
+
+function yuusya(){
+var i=1
+var s=0
+var nouryoku=["kiyou","binsyou","kinryoku","seimeiryoku","tiryoku","seisinryoku"]
+
+for(s=0;s<6;s++){
+document.getElementById(`yuusya${s+1}`).value=document.getElementById(`${nouryoku[s]}copy`).value
+if(document.getElementById(`${nouryoku[s]}glow`).checked){
+if(i==5){break}
+document.getElementById(`nouryoku${i}`).value=nouryoku[s]
+i++
+}
+}
+i=0
+for(s=0;s<6;s++){if(document.getElementById(`${nouryoku[s]}glow`).checked){i++}}
+if(i!=4){
+alert("成長させる能力を4つ選んでください。")
+return false
+}
+}
+	
+function roll(a,b){
+x=0
+for(i=0;i<a;i++){
+x+=(Math.floor(Math.random()*6)+1)
+}
+y=[x+b]
+if(x<3.5*a){y.push("1")}else{y.push("0")}
+return y
+}
+
+function syuzokukettei(){
+document.form2.gi.disabled=true;
+document.form2.tai.disabled=true;
+document.form2.sin.disabled=true;
+if(document.form1.syuzoku.value=="人間")
+{document.getElementById("ningenborn").hidden=false;ningen()}else
+{document.getElementById("ningenborn").hidden=true};
+if(document.form1.syuzoku.value=="エルフ")
+{document.getElementById("eruhuborn").hidden=false;eruhu()}else
+{document.getElementById("eruhuborn").hidden=true};
+if(document.form1.syuzoku.value=="ドワーフ")
+{document.getElementById("dowahuborn").hidden=false;dowahu()}else
+{document.getElementById("dowahuborn").hidden=true};
+if(document.form1.syuzoku.value=="タビット")
+{document.getElementById("tabittoborn").hidden=false;tabitto()}else
+{document.getElementById("tabittoborn").hidden=true};
+if(document.form1.syuzoku.value=="ルーンフォーク")
+{document.getElementById("runfokuborn").hidden=false;runfoku()}else
+{document.getElementById("runfokuborn").hidden=true};
+if(document.form1.syuzoku.value=="ナイトメア")
+{document.getElementById("naitomeaborn").hidden=false;naitomea()}else
+{document.getElementById("naitomeaborn").hidden=true};
+if(document.form1.syuzoku.value=="リカント")
+{document.getElementById("rikantoborn").hidden=false;rikanto()}else
+{document.getElementById("rikantoborn").hidden=true};
+if(document.form1.syuzoku.value=="リルドラケン")
+{document.getElementById("rirudorakenborn").hidden=false;rirudoraken()}else
+{document.getElementById("rirudorakenborn").hidden=true};
+if(document.form1.syuzoku.value=="グラスランナー")
+{document.getElementById("gurasurannaborn").hidden=false;gurasuranna()}else
+{document.getElementById("gurasurannaborn").hidden=true};
+if(document.form1.syuzoku.value=="メリア")
+{document.getElementById("meriaborn").hidden=false;meria()}else
+{document.getElementById("meriaborn").hidden=true};
+if(document.form1.syuzoku.value=="ティエンス")
+{document.getElementById("thiensuborn").hidden=false;thiensu()}else
+{document.getElementById("thiensuborn").hidden=true};
+if(document.form1.syuzoku.value=="レプラカーン")
+{document.getElementById("repurakanborn").hidden=false;repurakan()}else
+{document.getElementById("repurakanborn").hidden=true};
+if(document.form1.syuzoku.value=="アルヴ")
+{document.getElementById("aruvuborn").hidden=false;aruvu()}else
+{document.getElementById("aruvuborn").hidden=true};
+if(document.form1.syuzoku.value=="シャドウ")
+{document.getElementById("syadouborn").hidden=false;syadou()}else
+{document.getElementById("syadouborn").hidden=true};
+if(document.form1.syuzoku.value=="ソレイユ")
+{document.getElementById("soreiyuborn").hidden=false;soreiyu()}else
+{document.getElementById("soreiyuborn").hidden=true};
+if(document.form1.syuzoku.value=="ウィークリング"){
+wikuringu();
+document.getElementById("tokutyou").hidden=false;
+document.form1.syuzoku2.hidden=false;
+document.getElementById("wikuringuborn").hidden=false;}
+else{document.form1.syuzoku2.hidden=true;
+document.getElementById("tokutyou").hidden=true;
+document.getElementById("wikuringuborn").hidden=true;
+document.form2.binsyouplus.value=0;
+document.form2.tiryokuplus.value=0;
+document.form2.kiyouplus.value=0;
+document.form2.seisinuplus.value=0}
 
 
+}
+
+function wikuup(){
+if(document.form1.syuzoku2.value=="ガルーダ"){document.form2.binsyouplus.value=3}else{document.form2.binsyouplus.value=0}
+if(document.form1.syuzoku2.value=="タンノズ"){document.form2.seisinryokuplus.value=3}else{document.form2.seisinryokuplus.value=0}
+if(document.form1.syuzoku2.value=="バジリスク"){document.form2.tiryokuplus.value=3}else{document.form2.tiryokuplus.value=0}
+if(document.form1.syuzoku2.value=="ミノタウロス"){document.form2.kinryokuplus.value=3}else{document.form2.kinryokuplus.value=0}
+}
+
+function ningen(){
+document.form2.gi.disabled=true;
+document.form2.tai.disabled=true;
+document.form2.sin.disabled=true;
+if(document.form1.ningenumare.value=="madoukisi")
+{document.form2.gi.value=8;
+document.form2.tai.value=4;
+document.form2.sin.value=9}
+if(document.form1.ningenumare.value=="mazyutusi")
+{document.form2.gi.value=6;
+document.form2.tai.value=5;
+document.form2.sin.value=10}
+if(document.form1.ningenumare.value=="keisensi")
+{document.form2.gi.value=10;
+document.form2.tai.value=7;
+document.form2.sin.value=4}
+if(document.form1.ningenumare.value=="ippanzin")
+{document.form2.gi.value=7;
+document.form2.tai.value=7;
+document.form2.sin.value=7}
+if(document.form1.ningenumare.value=="youhei")
+{document.form2.gi.value=7;
+document.form2.tai.value=10;
+document.form2.sin.value=4}
+if(document.form1.ningenumare.value=="sinkan")
+{document.form2.gi.value=4;
+document.form2.tai.value=8;
+document.form2.sin.value=9}
+if(document.form1.ningenumare.value=="soureizyutusi")
+{document.form2.gi.value=7;
+document.form2.tai.value=4;
+document.form2.sin.value=10}
+if(document.form1.ningenumare.value=="syasyu")
+{document.form2.gi.value=9;
+document.form2.tai.value=5;
+document.form2.sin.value=7}
+if(document.form1.ningenumare.value=="kensi")
+{document.form2.gi.value=9;
+document.form2.tai.value=6;
+document.form2.sin.value=6}
+if(document.form1.ningenumare.value=="kentousi")
+{document.form2.gi.value=8;
+document.form2.tai.value=8;
+document.form2.sin.value=5}
+if(document.form1.ningenumare.value=="sensi")
+{document.form2.gi.value=7;
+document.form2.tai.value=9;
+document.form2.sin.value=5}
+if(document.form1.ningenumare.value=="rentaisi")
+{document.form2.gi.value=6;
+document.form2.tai.value=8;
+document.form2.sin.value=7}
+if(document.form1.ningenumare.value=="kazin")
+{document.form2.gi.value=5;
+document.form2.tai.value=7;
+document.form2.sin.value=9}
+if(document.form1.ningenumare.value=="youseitukai")
+{document.form2.gi.value=5;
+document.form2.tai.value=6;
+document.form2.sin.value=10}
+if(document.form1.ningenumare.value=="mazintukai")
+{document.form2.gi.value=6;
+document.form2.tai.value=6;
+document.form2.sin.value=9}
+if(document.form1.ningenumare.value=="sinradousi")
+{document.form2.gi.value=5;
+document.form2.tai.value=6;
+document.form2.sin.value=10}
+if(document.form1.ningenumare.value=="kisyu")
+{document.form2.gi.value=8;
+document.form2.tai.value=8;
+document.form2.sin.value=5}
+if(document.form1.ningenumare.value=="renkinzyutusi")
+{document.form2.gi.value=7;
+document.form2.tai.value=6;
+document.form2.sin.value=8}
+if(document.form1.ningenumare.value=="boukensya")
+{document.form2.gi.value=0;
+document.form2.tai.value=0;
+document.form2.sin.value=0
+document.form2.gi.disabled=false;
+document.form2.tai.disabled=false;
+document.form2.sin.disabled=false;
+console.log("test ok")}
+
+}
+
+function eruhu(){
+if(document.form1.eruhuumare.value=="kensi")
+{document.form2.gi.value=12
+document.form2.tai.value=5
+document.form2.sin.value=9}
+if(document.form1.eruhuumare.value=="yakusi")
+{document.form2.gi.value=10
+document.form2.tai.value=5
+document.form2.sin.value=11}
+if(document.form1.eruhuumare.value=="sinkan")
+{document.form2.gi.value=9
+document.form2.tai.value=5
+document.form2.sin.value=12}
+if(document.form1.eruhuumare.value=="soureizyutusi")
+{document.form2.gi.value=9
+document.form2.tai.value=4
+document.form2.sin.value=13}
+if(document.form1.eruhuumare.value=="mazyutusi")
+{document.form2.gi.value=10
+document.form2.tai.value=3
+document.form2.sin.value=13}
+if(document.form1.eruhuumare.value=="syasyu")
+{document.form2.gi.value=13
+document.form2.tai.value=5
+document.form2.sin.value=8}
+if(document.form1.eruhuumare.value=="rentaisi")
+{document.form2.gi.value=11
+document.form2.tai.value=5
+document.form2.sin.value=10}
+if(document.form1.eruhuumare.value=="mittei")
+{document.form2.gi.value=12
+document.form2.tai.value=4
+document.form2.sin.value=10}
+if(document.form1.eruhuumare.value=="youseitukai")
+{document.form2.gi.value=10
+document.form2.tai.value=2
+document.form2.sin.value=14}
+if(document.form1.eruhuumare.value=="kentousi")
+{document.form2.gi.value=11
+document.form2.tai.value=4
+document.form2.sin.value=11}
+if(document.form1.eruhuumare.value=="ginyuusizin")
+{document.form2.gi.value=9
+document.form2.tai.value=3
+document.form2.sin.value=14}
+if(document.form1.eruhuumare.value=="mazintukai")
+{document.form2.gi.value=10
+document.form2.tai.value=4
+document.form2.sin.value=12}
+if(document.form1.eruhuumare.value=="sinradousi")
+{document.form2.gi.value=8
+document.form2.tai.value=5
+document.form2.sin.value=13}
+if(document.form1.eruhuumare.value=="kisyu")
+{document.form2.gi.value=12
+document.form2.tai.value=6
+document.form2.sin.value=8}
+}
+
+function dowahu(){
+if(document.form1.dowahuumare.value=="syasyu")
+{document.form2.gi.value=6
+document.form2.tai.value=8
+document.form2.sin.value=6}
+if(document.form1.dowahuumare.value=="sensi")
+{document.form2.gi.value=4
+document.form2.tai.value=11
+document.form2.sin.value=5}
+if(document.form1.dowahuumare.value=="kentousi")
+{document.form2.gi.value=5
+document.form2.tai.value=10
+document.form2.sin.value=5}
+if(document.form1.dowahuumare.value=="sinkan")
+{document.form2.gi.value=4
+document.form2.tai.value=7
+document.form2.sin.value=9}
+if(document.form1.dowahuumare.value=="madoukisi")
+{document.form2.gi.value=6
+document.form2.tai.value=7
+document.form2.sin.value=7}
+if(document.form1.dowahuumare.value=="gakusya")
+{document.form2.gi.value=3
+document.form2.tai.value=8
+document.form2.sin.value=9}
+if(document.form1.dowahuumare.value=="nobuse")
+{document.form2.gi.value=6
+document.form2.tai.value=9
+document.form2.sin.value=5}
+if(document.form1.dowahuumare.value=="rentaisi")
+{document.form2.gi.value=5
+document.form2.tai.value=9
+document.form2.sin.value=6}
+if(document.form1.dowahuumare.value=="ginyuusizin")
+{document.form2.gi.value=4
+document.form2.tai.value=8
+document.form2.sin.value=8}
+if(document.form1.dowahuumare.value=="youseitukai")
+{document.form2.gi.value=5
+document.form2.tai.value=6
+document.form2.sin.value=9}
+if(document.form1.dowahuumare.value=="sinradousi")
+{document.form2.gi.value=4
+document.form2.tai.value=7
+document.form2.sin.value=9}
+if(document.form1.dowahuumare.value=="kisyu")
+{document.form2.gi.value=4
+document.form2.tai.value=10
+document.form2.sin.value=6}
+if(document.form1.dowahuumare.value=="renkinzyutusi")
+{document.form2.gi.value=5
+document.form2.tai.value=9
+document.form2.sin.value=9}
+}
+
+function tabitto(){
+if(document.form1.tabittoumare.value=="soureizyutusi")
+{document.form2.gi.value=6
+document.form2.tai.value=6
+document.form2.sin.value=10}
+if(document.form1.tabittoumare.value=="mazyutusi")
+{document.form2.gi.value=5
+document.form2.tai.value=7
+document.form2.sin.value=10}
+if(document.form1.tabittoumare.value=="gakusya")
+{document.form2.gi.value=5
+document.form2.tai.value=8
+document.form2.sin.value=9}
+if(document.form1.tabittoumare.value=="madoukisi")
+{document.form2.gi.value=8
+document.form2.tai.value=5
+document.form2.sin.value=9}
+if(document.form1.tabittoumare.value=="madousi")
+{document.form2.gi.value=5
+document.form2.tai.value=6
+document.form2.sin.value=11}
+if(document.form1.tabittoumare.value=="youseitukai")
+{document.form2.gi.value=7
+document.form2.tai.value=5
+document.form2.sin.value=10}
+if(document.form1.tabittoumare.value=="ginyuusizin")
+{document.form2.gi.value=6
+document.form2.tai.value=7
+document.form2.sin.value=9}
+if(document.form1.tabittoumare.value=="yakusi")
+{document.form2.gi.value=7
+document.form2.tai.value=6
+document.form2.sin.value=9}
+if(document.form1.tabittoumare.value=="mazintukai")
+{document.form2.gi.value=6
+document.form2.tai.value=6
+document.form2.sin.value=10}
+if(document.form1.tabittoumare.value=="sinradousi")
+{document.form2.gi.value=5
+document.form2.tai.value=6
+document.form2.sin.value=11}
+if(document.form1.tabittoumare.value=="renkinzyutusi")
+{document.form2.gi.value=6
+document.form2.tai.value=7
+document.form2.sin.value=9}
+}
+
+function runfoku(){
+if(document.form1.runfokuumare.value=="gakusya")
+{document.form2.gi.value=8
+document.form2.tai.value=10
+document.form2.sin.value=8}
+if(document.form1.runfokuumare.value=="syasyu")
+{document.form2.gi.value=12
+document.form2.tai.value=8
+document.form2.sin.value=6}
+if(document.form1.runfokuumare.value=="sensi")
+{document.form2.gi.value=9
+document.form2.tai.value=12
+document.form2.sin.value=5}
+if(document.form1.runfokuumare.value=="madoukisi")
+{document.form2.gi.value=12
+document.form2.tai.value=8
+document.form2.sin.value=6}
+if(document.form1.runfokuumare.value=="mazyutusi")
+{document.form2.gi.value=9
+document.form2.tai.value=8
+document.form2.sin.value=9}
+if(document.form1.runfokuumare.value=="mittei")
+{document.form2.gi.value=12
+document.form2.tai.value=6
+document.form2.sin.value=8}
+if(document.form1.runfokuumare.value=="rentaisi")
+{document.form2.gi.value=10
+document.form2.tai.value=8
+document.form2.sin.value=8}
+if(document.form1.runfokuumare.value=="keisensi")
+{document.form2.gi.value=11
+document.form2.tai.value=9
+document.form2.sin.value=6}
+if(document.form1.runfokuumare.value=="ginyuusizin")
+{document.form2.gi.value=8
+document.form2.tai.value=9
+document.form2.sin.value=9}
+if(document.form1.runfokuumare.value=="soureizyutusi")
+{document.form2.gi.value=7
+document.form2.tai.value=9
+document.form2.sin.value=10}
+if(document.form1.runfokuumare.value=="mazintukai")
+{document.form2.gi.value=9
+document.form2.tai.value=9
+document.form2.sin.value=8}
+if(document.form1.runfokuumare.value=="kisyu")
+{document.form2.gi.value=10
+document.form2.tai.value=11
+document.form2.sin.value=5}
+if(document.form1.runfokuumare.value=="renkinzyutusi")
+{document.form2.gi.value=10
+document.form2.tai.value=9
+document.form2.sin.value=7}
+}
+
+function naitomea(){
+if(document.form1.naitomeaumare.value=="mazyutusi")
+{document.form2.gi.value=5
+document.form2.tai.value=13
+document.form2.sin.value=12}
+if(document.form1.naitomeaumare.value=="youhei")
+{document.form2.gi.value=7
+document.form2.tai.value=15
+document.form2.sin.value=8}
+if(document.form1.naitomeaumare.value=="keisensi")
+{document.form2.gi.value=11
+document.form2.tai.value=13
+document.form2.sin.value=6}
+if(document.form1.naitomeaumare.value=="sinkan")
+{document.form2.gi.value=6
+document.form2.tai.value=14
+document.form2.sin.value=10}
+if(document.form1.naitomeaumare.value=="madoukisi")
+{document.form2.gi.value=9
+document.form2.tai.value=9
+document.form2.sin.value=12}
+if(document.form1.naitomeaumare.value=="ginyuusizin")
+{document.form2.gi.value=8
+document.form2.tai.value=13
+document.form2.sin.value=9}
+if(document.form1.naitomeaumare.value=="rentaisi")
+{document.form2.gi.value=9
+document.form2.tai.value=14
+document.form2.sin.value=7}
+if(document.form1.naitomeaumare.value=="syasyu")
+{document.form2.gi.value=10
+document.form2.tai.value=10
+document.form2.sin.value=10}
+if(document.form1.naitomeaumare.value=="nobuse")
+{document.form2.gi.value=9
+document.form2.tai.value=12
+document.form2.sin.value=9}
+if(document.form1.naitomeaumare.value=="soureizyutusi")
+{document.form2.gi.value=6
+document.form2.tai.value=11
+document.form2.sin.value=13}
+if(document.form1.naitomeaumare.value=="mazintukai")
+{document.form2.gi.value=7
+document.form2.tai.value=12
+document.form2.sin.value=11}
+if(document.form1.naitomeaumare.value=="sinradousi")
+{document.form2.gi.value=8
+document.form2.tai.value=10
+document.form2.sin.value=12}
+if(document.form1.naitomeaumare.value=="kisyu")
+{document.form2.gi.value=10
+document.form2.tai.value=13
+document.form2.sin.value=7}
+if(document.form1.naitomeaumare.value=="renkinzyutusi")
+{document.form2.gi.value=11
+document.form2.tai.value=9
+document.form2.sin.value=10}
+}
+
+function rikanto(){
+if(document.form1.rikantoumare.value=="mittei")
+{document.form2.gi.value=13
+document.form2.tai.value=5
+document.form2.sin.value=7}
+if(document.form1.rikantoumare.value=="sensi")
+{document.form2.gi.value=10
+document.form2.tai.value=9
+document.form2.sin.value=6}
+if(document.form1.rikantoumare.value=="kentousi")
+{document.form2.gi.value=11
+document.form2.tai.value=7
+document.form2.sin.value=7}
+if(document.form1.rikantoumare.value=="keisensi")
+{document.form2.gi.value=12
+document.form2.tai.value=6
+document.form2.sin.value=7}
+if(document.form1.rikantoumare.value=="nobuse")
+{document.form2.gi.value=9
+document.form2.tai.value=8
+document.form2.sin.value=8}
+if(document.form1.rikantoumare.value=="ginyuusizin")
+{document.form2.gi.value=8
+document.form2.tai.value=9
+document.form2.sin.value=8}
+if(document.form1.rikantoumare.value=="syasyu")
+{document.form2.gi.value=11
+document.form2.tai.value=8
+document.form2.sin.value=6}
+if(document.form1.rikantoumare.value=="rentaisi")
+{document.form2.gi.value=10
+document.form2.tai.value=8
+document.form2.sin.value=7}
+if(document.form1.rikantoumare.value=="gakusya")
+{document.form2.gi.value=10
+document.form2.tai.value=7
+document.form2.sin.value=8}
+if(document.form1.rikantoumare.value=="sinkan")
+{document.form2.gi.value=9
+document.form2.tai.value=7
+document.form2.sin.value=9}
+if(document.form1.rikantoumare.value=="sinradousi")
+{document.form2.gi.value=9
+document.form2.tai.value=7
+document.form2.sin.value=9}
+if(document.form1.rikantoumare.value=="kisyu")
+{document.form2.gi.value=11
+document.form2.tai.value=8
+document.form2.sin.value=6}
+}
+
+function rirudoraken(){
+if(document.form1.rirudorakenumare.value=="nobuse")
+{document.form2.gi.value=6
+document.form2.tai.value=12
+document.form2.sin.value=7}
+if(document.form1.rirudorakenumare.value=="kentousi")
+{document.form2.gi.value=6
+document.form2.tai.value=13
+document.form2.sin.value=6}
+if(document.form1.rirudorakenumare.value=="sensi")
+{document.form2.gi.value=5
+document.form2.tai.value=14
+document.form2.sin.value=6}
+if(document.form1.rirudorakenumare.value=="syounin")
+{document.form2.gi.value=5
+document.form2.tai.value=11
+document.form2.sin.value=9}
+if(document.form1.rirudorakenumare.value=="sinkan")
+{document.form2.gi.value=4
+document.form2.tai.value=13
+document.form2.sin.value=8}
+if(document.form1.rirudorakenumare.value=="syasyu")
+{document.form2.gi.value=7
+document.form2.tai.value=12
+document.form2.sin.value=6}
+if(document.form1.rirudorakenumare.value=="keisensi")
+{document.form2.gi.value=6
+document.form2.tai.value=11
+document.form2.sin.value=8}
+if(document.form1.rirudorakenumare.value=="rentaisi")
+{document.form2.gi.value=5
+document.form2.tai.value=12
+document.form2.sin.value=8}
+if(document.form1.rirudorakenumare.value=="mahoutukai")
+{document.form2.gi.value=4
+document.form2.tai.value=12
+document.form2.sin.value=9}
+if(document.form1.rirudorakenumare.value=="youseitukai")
+{document.form2.gi.value=3
+document.form2.tai.value=12
+document.form2.sin.value=10}
+if(document.form1.rirudorakenumare.value=="mazintukai")
+{document.form2.gi.value=5
+document.form2.tai.value=12
+document.form2.sin.value=8}
+if(document.form1.rirudorakenumare.value=="sinradousi")
+{document.form2.gi.value=4
+document.form2.tai.value=12
+document.form2.sin.value=9}
+if(document.form1.rirudorakenumare.value=="kisyu")
+{document.form2.gi.value=6
+document.form2.tai.value=13
+document.form2.sin.value=6}
+if(document.form1.rirudorakenumare.value=="renkinzyutusi")
+{document.form2.gi.value=5
+document.form2.tai.value=13
+document.form2.sin.value=7}
+}
+
+function gurasuranna(){
+if(document.form1.gurasurannaumare.value=="nusutto")
+{document.form2.gi.value=13
+document.form2.tai.value=0
+document.form2.sin.value=12}
+if(document.form1.gurasurannaumare.value=="keisensi")
+{document.form2.gi.value=14
+document.form2.tai.value=1
+document.form2.sin.value=10}
+if(document.form1.gurasurannaumare.value=="nobuse")
+{document.form2.gi.value=12
+document.form2.tai.value=1
+document.form2.sin.value=12}
+if(document.form1.gurasurannaumare.value=="syasyu")
+{document.form2.gi.value=14
+document.form2.tai.value=0
+document.form2.sin.value=11}
+if(document.form1.gurasurannaumare.value=="syumizin")
+{document.form2.gi.value=12
+document.form2.tai.value=0
+document.form2.sin.value=13}
+if(document.form1.gurasurannaumare.value=="gakusya")
+{document.form2.gi.value=11
+document.form2.tai.value=1
+document.form2.sin.value=13}
+if(document.form1.gurasurannaumare.value=="kentousi")
+{document.form2.gi.value=14
+document.form2.tai.value=2
+document.form2.sin.value=9}
+if(document.form1.gurasurannaumare.value=="tabibito")
+{document.form2.gi.value=11
+document.form2.tai.value=2
+document.form2.sin.value=12}
+if(document.form1.gurasurannaumare.value=="mittei")
+{document.form2.gi.value=15
+document.form2.tai.value=0
+document.form2.sin.value=10}
+if(document.form1.gurasurannaumare.value=="ginyuusizin")
+{document.form2.gi.value=12
+document.form2.tai.value=0
+document.form2.sin.value=13}
+if(document.form1.gurasurannaumare.value=="kisyu")
+{document.form2.gi.value=13
+document.form2.tai.value=1
+document.form2.sin.value=11}
+if(document.form1.gurasurannaumare.value=="renkinzyutusi")
+{document.form2.gi.value=13
+document.form2.tai.value=0
+document.form2.sin.value=12}
+}
+
+function meria(){
+if(document.form1.meriaumare.value=="nobuse")
+{document.form2.gi.value=9
+document.form2.tai.value=8
+document.form2.sin.value=12}
+if(document.form1.meriaumare.value=="sinkan")
+{document.form2.gi.value=8
+document.form2.tai.value=8
+document.form2.sin.value=13}
+if(document.form1.meriaumare.value=="youseitukai")
+{document.form2.gi.value=8
+document.form2.tai.value=7
+document.form2.sin.value=14}
+if(document.form1.meriaumare.value=="mazyutusi")
+{document.form2.gi.value=8
+document.form2.tai.value=6
+document.form2.sin.value=15}
+if(document.form1.meriaumare.value=="soureizyutusi")
+{document.form2.gi.value=7
+document.form2.tai.value=6
+document.form2.sin.value=16}
+if(document.form1.meriaumare.value=="syasyu")
+{document.form2.gi.value=10
+document.form2.tai.value=7
+document.form2.sin.value=12}
+if(document.form1.meriaumare.value=="keisensi")
+{document.form2.gi.value=10
+document.form2.tai.value=8
+document.form2.sin.value=11}
+if(document.form1.meriaumare.value=="madousi")
+{document.form2.gi.value=8
+document.form2.tai.value=5
+document.form2.sin.value=16}
+if(document.form1.meriaumare.value=="ginyuusizin")
+{document.form2.gi.value=7
+document.form2.tai.value=7
+document.form2.sin.value=15}
+if(document.form1.meriaumare.value=="rentaisi")
+{document.form2.gi.value=9
+document.form2.tai.value=9
+document.form2.sin.value=11}
+if(document.form1.meriaumare.value=="mazintukai")
+{document.form2.gi.value=7
+document.form2.tai.value=7
+document.form2.sin.value=15}
+if(document.form1.meriaumare.value=="sinradousi")
+{document.form2.gi.value=6
+document.form2.tai.value=7
+document.form2.sin.value=16}
+if(document.form1.meriaumare.value=="kisyu")
+{document.form2.gi.value=8
+document.form2.tai.value=9
+document.form2.sin.value=12}
+if(document.form1.meriaumare.value=="renkinzyutusi")
+{document.form2.gi.value=9
+document.form2.tai.value=7
+document.form2.sin.value=13}
+}
+
+function thiensu(){
+if(document.form1.thiensuumare.value=="kisyu")
+{document.form2.gi.value=10
+document.form2.tai.value=11
+document.form2.sin.value=7}
+if(document.form1.thiensuumare.value=="kentousi")
+{document.form2.gi.value=9
+document.form2.tai.value=13
+document.form2.sin.value=6}
+if(document.form1.thiensuumare.value=="sensi")
+{document.form2.gi.value=8
+document.form2.tai.value=12
+document.form2.sin.value=8}
+if(document.form1.thiensuumare.value=="sinkan")
+{document.form2.gi.value=7
+document.form2.tai.value=12
+document.form2.sin.value=9}
+if(document.form1.thiensuumare.value=="mahoutukai")
+{document.form2.gi.value=6
+document.form2.tai.value=12
+document.form2.sin.value=10}
+if(document.form1.thiensuumare.value=="syasyu")
+{document.form2.gi.value=11
+document.form2.tai.value=12
+document.form2.sin.value=5}
+if(document.form1.thiensuumare.value=="mittei")
+{document.form2.gi.value=10
+document.form2.tai.value=10
+document.form2.sin.value=8}
+if(document.form1.thiensuumare.value=="mahousensi")
+{document.form2.gi.value=9
+document.form2.tai.value=11
+document.form2.sin.value=8}
+if(document.form1.thiensuumare.value=="youseitukai")
+{document.form2.gi.value=7
+document.form2.tai.value=11
+document.form2.sin.value=10}
+if(document.form1.thiensuumare.value=="gakusya")
+{document.form2.gi.value=8
+document.form2.tai.value=11
+document.form2.sin.value=9}
+if(document.form1.thiensuumare.value=="mazintukai")
+{document.form2.gi.value=7
+document.form2.tai.value=12
+document.form2.sin.value=9}
+if(document.form1.thiensuumare.value=="sinradousi")
+{document.form2.gi.value=8
+document.form2.tai.value=10
+document.form2.sin.value=10}
+if(document.form1.thiensuumare.value=="renkinzyutusi")
+{document.form2.gi.value=9
+document.form2.tai.value=11
+document.form2.sin.value=8}
+}
+
+function repurakan(){
+if(document.form1.repurakanumare.value=="keisensi")
+{document.form2.gi.value=13
+document.form2.tai.value=5
+document.form2.sin.value=5}
+if(document.form1.repurakanumare.value=="syasyu")
+{document.form2.gi.value=12
+document.form2.tai.value=6
+document.form2.sin.value=5}
+if(document.form1.repurakanumare.value=="mittei")
+{document.form2.gi.value=14
+document.form2.tai.value=4
+document.form2.sin.value=5}
+if(document.form1.repurakanumare.value=="youseitukai")
+{document.form2.gi.value=11
+document.form2.tai.value=4
+document.form2.sin.value=8}
+if(document.form1.repurakanumare.value=="renkinzyutusi")
+{document.form2.gi.value=11
+document.form2.tai.value=5
+document.form2.sin.value=7}
+if(document.form1.repurakanumare.value=="nobuse")
+{document.form2.gi.value=12
+document.form2.tai.value=5
+document.form2.sin.value=6}
+if(document.form1.repurakanumare.value=="syumizin")
+{document.form2.gi.value=13
+document.form2.tai.value=4
+document.form2.sin.value=6}
+if(document.form1.repurakanumare.value=="madoukisi")
+{document.form2.gi.value=12
+document.form2.tai.value=4
+document.form2.sin.value=7}
+if(document.form1.repurakanumare.value=="sinkan")
+{document.form2.gi.value=10
+document.form2.tai.value=5
+document.form2.sin.value=8}
+if(document.form1.repurakanumare.value=="madousi")
+{document.form2.gi.value=11
+document.form2.tai.value=3
+document.form2.sin.value=9}
+if(document.form1.repurakanumare.value=="mazintukai")
+{document.form2.gi.value=12
+document.form2.tai.value=4
+document.form2.sin.value=7}
+if(document.form1.repurakanumare.value=="sinradousi")
+{document.form2.gi.value=11
+document.form2.tai.value=4
+document.form2.sin.value=8}
+if(document.form1.repurakanumare.value=="kisyu")
+{document.form2.gi.value=13
+document.form2.tai.value=6
+document.form2.sin.value=4}
+}
+
+function aruvu(){
+if(document.form1.aruvuumare.value=="mittei")
+{document.form2.gi.value=12
+document.form2.tai.value=5
+document.form2.sin.value=8}
+if(document.form1.aruvuumare.value=="keisensi")
+{document.form2.gi.value=12
+document.form2.tai.value=6
+document.form2.sin.value=7}
+if(document.form1.aruvuumare.value=="mahoutukai")
+{document.form2.gi.value=9
+document.form2.tai.value=5
+document.form2.sin.value=11}
+if(document.form1.aruvuumare.value=="sinkan")
+{document.form2.gi.value=10
+document.form2.tai.value=6
+document.form2.sin.value=9}
+if(document.form1.aruvuumare.value=="gakusya")
+{document.form2.gi.value=10
+document.form2.tai.value=5
+document.form2.sin.value=10}
+if(document.form1.aruvuumare.value=="syasyu")
+{document.form2.gi.value=13
+document.form2.tai.value=4
+document.form2.sin.value=8}
+if(document.form1.aruvuumare.value=="kentousi")
+{document.form2.gi.value=11
+document.form2.tai.value=7
+document.form2.sin.value=7}
+if(document.form1.aruvuumare.value=="soureizyutusi")
+{document.form2.gi.value=9
+document.form2.tai.value=4
+document.form2.sin.value=12}
+if(document.form1.aruvuumare.value=="mazintukai")
+{document.form2.gi.value=9
+document.form2.tai.value=6
+document.form2.sin.value=10}
+if(document.form1.aruvuumare.value=="madoukisi")
+{document.form2.gi.value=9
+document.form2.tai.value=7
+document.form2.sin.value=9}
+}
+
+function wikuringu(){
+if(document.form1.wikuringuumare.value=="haiseki")
+{document.form2.gi.value=10
+document.form2.tai.value=7
+document.form2.sin.value=6}
+if(document.form1.wikuringuumare.value=="keisensi")
+{document.form2.gi.value=9
+document.form2.tai.value=8
+document.form2.sin.value=6}
+if(document.form1.wikuringuumare.value=="sensi")
+{document.form2.gi.value=8
+document.form2.tai.value=10
+document.form2.sin.value=5}
+if(document.form1.wikuringuumare.value=="sinkan")
+{document.form2.gi.value=7
+document.form2.tai.value=9
+document.form2.sin.value=7}
+if(document.form1.wikuringuumare.value=="mahoutukai")
+{document.form2.gi.value=7
+document.form2.tai.value=8
+document.form2.sin.value=8}
+if(document.form1.wikuringuumare.value=="rentaisi")
+{document.form2.gi.value=8
+document.form2.tai.value=8
+document.form2.sin.value=7}
+if(document.form1.wikuringuumare.value=="syasyu")
+{document.form2.gi.value=10
+document.form2.tai.value=8
+document.form2.sin.value=5}
+if(document.form1.wikuringuumare.value=="kentousi")
+{document.form2.gi.value=9
+document.form2.tai.value=9
+document.form2.sin.value=5}
+if(document.form1.wikuringuumare.value=="sinradousi")
+{document.form2.gi.value=7
+document.form2.tai.value=7
+document.form2.sin.value=9}
+if(document.form1.wikuringuumare.value=="mazintukai")
+{document.form2.gi.value=7
+document.form2.tai.value=8
+document.form2.sin.value=8}
+}
+
+function syadou(){
+if(document.form1.syadouumare.value=="nobuse")
+{document.form2.gi.value=15
+document.form2.tai.value=6
+document.form2.sin.value=6}
+if(document.form1.syadouumare.value=="kensi")
+{document.form2.gi.value=17
+document.form2.tai.value=7
+document.form2.sin.value=3}
+if(document.form1.syadouumare.value=="mittei")
+{document.form2.gi.value=16
+document.form2.tai.value=7
+document.form2.sin.value=4}
+if(document.form1.syadouumare.value=="kentousi")
+{document.form2.gi.value=14
+document.form2.tai.value=8
+document.form2.sin.value=5}
+if(document.form1.syadouumare.value=="sensi")
+{document.form2.gi.value=15
+document.form2.tai.value=9
+document.form2.sin.value=3}
+if(document.form1.syadouumare.value=="madoukisi")
+{document.form2.gi.value=17
+document.form2.tai.value=5
+document.form2.sin.value=5}
+if(document.form1.syadouumare.value=="syasyu")
+{document.form2.gi.value=18
+document.form2.tai.value=6
+document.form2.sin.value=3}
+if(document.form1.syadouumare.value=="rentaisi")
+{document.form2.gi.value=16
+document.form2.tai.value=6
+document.form2.sin.value=5}
+if(document.form1.syadouumare.value=="renkinzyutusi")
+{document.form2.gi.value=14
+document.form2.tai.value=8
+document.form2.sin.value=5}
+if(document.form1.syadouumare.value=="kisyu")
+{document.form2.gi.value=13
+document.form2.tai.value=7
+document.form2.sin.value=7}
+}
+
+function soreiyu(){
+if(document.form1.soreiyuumare.value=="sinkan")
+{document.form2.gi.value=9
+document.form2.tai.value=13
+document.form2.sin.value=4}
+if(document.form1.soreiyuumare.value=="keisensi")
+{document.form2.gi.value=12
+document.form2.tai.value=12
+document.form2.sin.value=2}
+if(document.form1.soreiyuumare.value=="sensi")
+{document.form2.gi.value=10
+document.form2.tai.value=15
+document.form2.sin.value=1}
+if(document.form1.soreiyuumare.value=="kentousi")
+{document.form2.gi.value=12
+document.form2.tai.value=14
+document.form2.sin.value=0}
+if(document.form1.soreiyuumare.value=="nobuse")
+{document.form2.gi.value=10
+document.form2.tai.value=13
+document.form2.sin.value=3}
+if(document.form1.soreiyuumare.value=="syasyu")
+{document.form2.gi.value=11
+document.form2.tai.value=14
+document.form2.sin.value=1}
+if(document.form1.soreiyuumare.value=="kisyu")
+{document.form2.gi.value=11
+document.form2.tai.value=13
+document.form2.sin.value=2}
+if(document.form1.soreiyuumare.value=="renkinzyutusi")
+{document.form2.gi.value=10
+document.form2.tai.value=11
+document.form2.sin.value=5}
+if(document.form1.soreiyuumare.value=="syumizin")
+{document.form2.gi.value=11
+document.form2.tai.value=11
+document.form2.sin.value=4}
+if(document.form1.soreiyuumare.value=="haiseki")
+{document.form2.gi.value=12
+document.form2.tai.value=11
+document.form2.sin.value=3}
+}
+
+function reroll(i){
+var kiyou="kiyou"+i
+var binsyou="binsyou"+i
+var kinryoku="kinryoku"+i
+var seimeiryoku="seimeiryoku"+i
+var tiryoku="tiryoku"+i
+var seisinryoku="seisinryoku"+i
+if(document.form1.syuzoku.value=="人間"){a=roll(2,0);b=roll(2,0);c=roll(2,0);d=roll(2,0);e=roll(2,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="エルフ"){a=roll(2,0);b=roll(2,0);c=roll(1,0);d=roll(2,0);e=roll(2,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="ドワーフ"){a=roll(2,6);b=roll(1,0);c=roll(2,0);d=roll(2,0);e=roll(1,0);f=roll(2,6);}
+if(document.form1.syuzoku.value=="タビット"){a=roll(1,0);b=roll(1,0);c=roll(1,0);d=roll(2,0);e=roll(2,6);f=roll(2,0);}
+if(document.form1.syuzoku.value=="ルーンフォーク"){a=roll(2,0);b=roll(1,0);c=roll(2,0);d=roll(2,0);e=roll(2,0);f=roll(1,0);}
+if(document.form1.syuzoku.value=="ナイトメア"){a=roll(2,0);b=roll(2,0);c=roll(1,0);d=roll(1,0);e=roll(2,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="リカント"){a=roll(1,0);b=roll(1,3);c=roll(2,0);d=roll(2,0);e=roll(1,6);f=roll(1,0);}
+if(document.form1.syuzoku.value=="リルドラケン"){a=roll(1,0);b=roll(2,0);c=roll(2,0);d=roll(2,6);e=roll(1,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="グラスランナー"){a=roll(2,0);b=roll(2,0);c=roll(1,0);d=roll(2,6);e=roll(1,0);f=roll(2,6);}
+if(document.form1.syuzoku.value=="メリア"){a=roll(1,0);b=roll(1,0);c=roll(1,0);d=roll(2,6);e=roll(1,0);f=roll(1,0);}
+if(document.form1.syuzoku.value=="ティエンス"){a=roll(2,0);b=roll(2,0);c=roll(1,0);d=roll(1,3);e=roll(2,0);f=roll(2,3);}
+if(document.form1.syuzoku.value=="レプラカーン"){a=roll(2,0);b=roll(1,0);c=roll(2,0);d=roll(2,0);e=roll(2,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="アルヴ"){a=roll(1,0);b=roll(1,3);c=roll(2,3);d=roll(2,0);e=roll(1,6);f=roll(1,0);}
+if(document.form1.syuzoku.value=="ウィークリング"){a=roll(2,0);b=roll(2,0);c=roll(2,0);d=roll(2,0);e=roll(2,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="シャドウ"){a=roll(1,0);b=roll(1,0);c=roll(2,0);d=roll(2,0);e=roll(2,0);f=roll(2,0);}
+if(document.form1.syuzoku.value=="ソレイユ"){a=roll(1,0);b=roll(2,0);c=roll(1,6);d=roll(2,0);e=roll(1,0);f=roll(2,0);}
+document.form2[kiyou].value=a[0]
+document.form2[binsyou].value=b[0]
+document.form2[kinryoku].value=c[0]
+document.form2[seimeiryoku].value=d[0]
+document.form2[tiryoku].value=e[0]
+document.form2[seisinryoku].value=f[0]
+if(a[1]==1){document.form2[kiyou].style.backgroundColor="#ffc0cb"}else{document.form2[kiyou].style.backgroundColor="#ffffff"}
+if(b[1]==1){document.form2[binsyou].style.backgroundColor="#ffc0cb"}else{document.form2[binsyou].style.backgroundColor="#ffffff"}
+if(c[1]==1){document.form2[kinryoku].style.backgroundColor="#ffc0cb"}else{document.form2[kinryoku].style.backgroundColor="#ffffff"}
+if(d[1]==1){document.form2[seimeiryoku].style.backgroundColor="#ffc0cb"}else{document.form2[seimeiryoku].style.backgroundColor="#ffffff"}
+if(e[1]==1){document.form2[tiryoku].style.backgroundColor="#ffc0cb"}else{document.form2[tiryoku].style.backgroundColor="#ffffff"}
+if(f[1]==1){document.form2[seisinryoku].style.backgroundColor="#ffc0cb"}else{document.form2[seisinryoku].style.backgroundColor="#ffffff"}
+}
+
+function check(){
+if(document.form2.sentaku1.checked){sum(1)}
+if(document.form2.sentaku2.checked){sum(2)}
+if(document.form2.sentaku3.checked){sum(3)}
+}
+
+function sum(i){
+var kiyou="kiyou"+i
+var binsyou="binsyou"+i
+var kinryoku="kinryoku"+i
+var seimeiryoku="seimeiryoku"+i
+var tiryoku="tiryoku"+i
+var seisinryoku="seisinryoku"+i
+a=Number(document.form2.gi.value)+Number(document.form2[kiyou].value)+Number(document.form2.kiyouplus.value)
+b=Number(document.form2.gi.value)+Number(document.form2[binsyou].value)+Number(document.form2.binsyouplus.value)
+c=Number(document.form2.tai.value)+Number(document.form2[kinryoku].value)+Number(document.form2.kinryokuplus.value)
+d=Number(document.form2.tai.value)+Number(document.form2[seimeiryoku].value)+Number(document.form2.seimeiryokuplus.value)
+e=Number(document.form2.sin.value)+Number(document.form2[tiryoku].value)+Number(document.form2.tiryokuplus.value)
+f=Number(document.form2.sin.value)+Number(document.form2[seisinryoku].value)+Number(document.form2.seisinryokuplus.value)
+document.form2.kiyoucopy.value=a
+document.form3.kiyou.value=a
+document.form2.binsyoucopy.value=b
+document.form3.binsyou.value=b
+document.form2.kinryokucopy.value=c
+document.form3.kinryoku.value=c
+document.form2.seimeiryokucopy.value=d
+document.form3.seimeiryoku.value=d
+document.form2.tiryokucopy.value=e
+document.form3.tiryoku.value=e
+document.form2.seisinryokucopy.value=f
+document.form3.seisinryoku.value=f
+}
+
+function sub(){document.getElementById("form2").onsubmit=false}
+</script>
 </head>
 
-<body>
-<form name="form1" class="hyou">
+<body  onload="uketori()">
+<form name="form1">
+種族　<select name="syuzoku" id="syuzoku" onchange="syuzokukettei();check()">
+	<option value="empty"></option>
+	<option value="人間">人間</option>
+	<option value="エルフ">エルフ</option>
+	<option value="ドワーフ">ドワーフ</option>
+	<option value="タビット">タビット</option>
+	<option value="ルーンフォーク">ルーンフォーク</option>
+	<option value="ナイトメア">ナイトメア</option>
+	<option value="リカント">リカント</option>
+	<option value="リルドラケン">リルドラケン</option>
+	<option value="グラスランナー">グラスランナー</option>
+	<option value="メリア">メリア</option>
+	<option value="ティエンス">ティエンス</option>
+	<option value="レプラカーン">レプラカーン</option>
+	<option value="アルヴ">アルヴ</option>
+	<option value="ウィークリング">ウィークリング</option>
+	<option value="シャドウ">シャドウ</option>
+	<option value="ソレイユ">ソレイユ</option>
+</select>
 
-<table>
-<tbody><tr><th colspan="5"  align="center">人間</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=madoukisi">魔動機師</a></td><td>マギテック</td><td>8</td><td>4</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=madousi">魔導士</a></td><td>ソーサラー</td><td>6</td><td>5</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=keisensi">軽戦士</a></td><td>スカウトandフェンサー</td><td>10</td><td>7</td><td>4</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=ippanzin">一般人</a></td><td>なし</td><td>7</td><td>7</td><td>7</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=youhei">傭兵</a></td><td>ファイターorグラップラー</td><td>7</td><td>10</td><td>4</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=sinkan">神官</a></td><td>プリースト</td><td>4</td><td>8</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=soureizyutusi">操霊術師</a></td><td>コンジャラー</td><td>7</td><td>4</td><td>10</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=syasyu">射手</a></td><td>シューター</td><td>9</td><td>5</td><td>7</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=kensi">剣士</a></td><td>フェンサー</td><td>9</td><td>6</td><td>6</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>8</td><td>8</td><td>5</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=sensi">戦士</a></td><td>ファイター</td><td>7</td><td>9</td><td>5</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>6</td><td>8</td><td>7</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=kazin">歌人</a></td><td>バード</td><td>5</td><td>7</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=youseitukai">妖精使い</a></td><td>フェアリーテイマー</td><td>5</td><td>6</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>6</td><td>6</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>5</td><td>6</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=kisyu">騎手</a></td><td>ライダー</td><td>8</td><td>8</td><td>5</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=ningen&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>7</td><td>6</td><td>8</td></tr></thead>
-<tr><td>冒険者</td><td>なし</td><td>2d</td><td>2d</td><td>2d</td></tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
+<select name="syuzoku2" hidden onchange="wikuup();check()">
+	<option value="empty"></option>
+	<option value="ガルーダ">ガルーダ</option>
+	<option value="タンノズ">タンノズ</option>
+	<option value="バジリスク">バジリスク</option>
+	<option value="ミノタウロス">ミノタウロス</option>
+</select>
+
+<div id="ningenborn" hidden>
+生まれ　<select name="ningenumare" onchange="ningen();check()">
+	<option value="empty"></option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="mazyutusi">魔術師</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="ippanzin">一般人</option>
+	<option value="youhei">傭兵</option>
+	<option value="sinkan">神官</option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="syasyu">射手</option>
+	<option value="kensi">剣士</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="sensi">戦士</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="kazin">歌人</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+	<option value="boukensya">冒険者</option>
+</select>
+</div>
+<div id="eruhuborn" hidden>
+生まれ　<select name="eruhuumare" onchange="eruhu();check()">
+	<option value="empty"></option>
+	<option value="kensi">剣士</option>
+	<option value="yakusi">薬師</option>
+	<option value="sinkan">神官</option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="mazyutusi">魔術師</option>
+	<option value="syasyu">射手</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="mittei">密偵</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+</select>
+</div>
+<div id="dowahuborn" hidden>
+生まれ　<select name="dowahuumare" onchange="dowahu();check()">
+	<option value="empty"></option>
+	<option value="syasyu">射手</option>
+	<option value="sensi">戦士</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="sinkan">神官</option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="gakusya">学者</option>
+	<option value="nobuse">野伏</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="tabittoborn" hidden>
+生まれ　<select name="tabittoumare" onchange="tabitto();check()">
+	<option value="empty"></option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="mazyutusi">魔術師</option>
+	<option value="gakusya">学者</option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="madousi">魔導士</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="yakusi">薬師</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="runfokuborn" hidden>
+生まれ　<select name="runfokuumare" onchange="runfoku();check()">
+	<option value="empty"></option>
+	<option value="gakusya">学者</option>
+	<option value="syasyu">射手</option>
+	<option value="sensi">戦士</option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="mazyutusi">魔術師</option>
+	<option value="mittei">密偵</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="naitomeaborn" hidden>
+生まれ　<select name="naitomeaumare" onchange="naitomea();check()">
+	<option value="empty"></option>
+	<option value="mazyutusi">魔術師</option>
+	<option value="youhei">傭兵</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="sinkan">神官</option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="syasyu">射手</option>
+	<option value="nobuse">野伏</option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="rikantoborn" hidden>
+生まれ　<select name="rikantoumare" onchange="rikanto();check()">
+	<option value="empty"></option>
+	<option value="mittei">密偵</option>
+	<option value="sensi">戦士</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="nobuse">野伏</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="syasyu">射手</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="gakusya">学者</option>
+	<option value="sinkan">神官</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+</select>
+</div>
+<div id="rirudorakenborn" hidden>
+生まれ　<select name="rirudorakenumare" onchange="rirudoraken();check()">
+	<option value="empty"></option>
+	<option value="nobuse">野伏</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="sensi">戦士</option>
+	<option value="syounin">商人</option>
+	<option value="sinkan">神官</option>
+	<option value="syasyu">射手</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="mahoutukai">魔法使い</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="gurasurannaborn" hidden>
+生まれ　<select name="gurasurannaumare" onchange="gurasuranna();check()">
+	<option value="empty"></option>
+	<option value="nusutto">盗っ人</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="nobuse">野伏</option>
+	<option value="syasyu">射手</option>
+	<option value="syumizin">趣味人</option>
+	<option value="gakusya">学者</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="tabibito">旅人</option>
+	<option value="mittei">密偵</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="meriaborn" hidden>
+生まれ　<select name="meriaumare" onchange="meria();check()">
+	<option value="empty"></option>
+	<option value="nobuse">野伏</option>
+	<option value="sinkan">神官</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="mazyutusi">魔術師</option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="syasyu">射手</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="madousi">魔導士</option>
+	<option value="ginyuusizin">吟遊詩人</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="thiensuborn" hidden>
+生まれ　<select name="thiensuumare" onchange="thiensu();check()">
+	<option value="empty"></option>
+	<option value="kisyu">騎手</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="sensi">戦士</option>
+	<option value="sinkan">神官</option>
+	<option value="mahoutukai">魔法使い</option>
+	<option value="syasyu">射手</option>
+	<option value="mittei">密偵</option>
+	<option value="mahousensi">魔法戦士</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="gakusya">学者</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="renkinzyutusi">錬金術師</option>
+</select>
+</div>
+<div id="repurakanborn" hidden>
+生まれ　<select name="repurakanumare" onchange="repurakan();check()">
+	<option value="empty"></option>
+	<option value="keisensi">軽戦士</option>
+	<option value="syasyu">射手</option>
+	<option value="mittei">密偵</option>
+	<option value="youseitukai">妖精使い</option>
+	<option value="renkinzyutusi">錬金術師</option>
+	<option value="nobuse">野伏</option>
+	<option value="syumizin">趣味人</option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="sinkan">神官</option>
+	<option value="madousi">魔導士</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="kisyu">騎手</option>
+</select>
+</div>
+<div id="aruvuborn" hidden>
+生まれ　<select name="aruvuumare" onchange="aruvu();check()">
+	<option value="empty"></option>
+	<option value="mittei">密偵</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="mahoutukai">魔法使い</option>
+	<option value="sinkan">神官</option>
+	<option value="gakusya">学者</option>
+	<option value="syasyu">射手</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="soureizyutusi">操霊術師</option>
+	<option value="mazintukai">魔神使い</option>
+	<option value="madoukisi">魔動機師</option>
+</select>
+</div>
+<div id="wikuringuborn" hidden>
+生まれ　<select name="wikuringuumare" onchange="wikuringu();check()">
+	<option value="empty"></option>
+	<option value="haiseki">斥候</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="sensi">戦士</option>
+	<option value="sinkan">神官</option>
+	<option value="mahoutukai">魔法使い</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="syasyu">射手</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="sinradousi">森羅導師</option>
+	<option value="mazintukai">魔神使い</option>
+</select>
+</div>
+<div id="syadouborn" hidden>
+生まれ　<select name="syadouumare" onchange="syadou();check()">
+	<option value="empty"></option>
+	<option value="nobuse">野伏</option>
+	<option value="kensi">剣士</option>
+	<option value="mittei">密偵</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="sensi">戦士</option>
+	<option value="madoukisi">魔動機師</option>
+	<option value="syasyu">射手</option>
+	<option value="rentaisi">錬体士</option>
+	<option value="renkinzyutusi">錬金術師</option>
+	<option value="kisyu">騎手</option>
+</select>
+</div>
+<div id="soreiyuborn" hidden>
+生まれ　<select name="soreiyuumare" onchange="soreiyu();check()">
+	<option value="empty"></option>
+	<option value="sinkan">神官</option>
+	<option value="keisensi">軽戦士</option>
+	<option value="sensi">戦士</option>
+	<option value="kentousi">拳闘士</option>
+	<option value="nobuse">野伏</option>
+	<option value="syasyu">射手</option>
+	<option value="kisyu">騎手</option>
+	<option value="renkinzyutusi">錬金術師</option>
+	<option value="syumizin">趣味人</option>
+	<option value="haiseki">斥候</option>
+</select>
+</div>
+
+</form>
+<form name="form2" id="form2" onsubmit="return false" method="get">
+
+期待値未満の値はピンク色で表示されます。
+<table id="nouryokuti">
+<tr>
+<td></td>
+<td colspan="2">技：<input type="text" name="gi" value="0" disabled size="2"></td>
+<td colspan="2">体：<input type="text" name="tai" value="0" disabled size="2"></td>
+<td colspan="2">心：<input type="text" name="sin" value="0" disabled size="2"></td>
+</tr>
+<tr>
+<td></td>
+<td><input type="checkbox" class="seityou" name="kiyouglow" id="kiyouglow" tabindex="-1"><label for="kiyouglow">器用</label></td>
+<td><input type="checkbox" class="seityou" name="binsyouglow" id="binsyouglow" tabindex="-1"><label for="binsyouglow">敏捷</label></td>
+<td><input type="checkbox" class="seityou" name="kinryokuglow" id="kinryokuglow" tabindex="-1"><label for="kinryokuglow">筋力</label></td>
+<td><input type="checkbox" class="seityou" name="seimeiryokuglow" id="seimeiryokuglow" tabindex="-1"><label for="seimeiryokuglow">生命力</label></td>
+<td><input type="checkbox" class="seityou" name="tiryokuglow" id="tiryokuglow" tabindex="-1"><label for="tiryokuglow">知力</label></td>
+<td><input type="checkbox" class="seityou" name="seisinryokuglow" id="seisinryokuglow" tabindex="-1"><label for="seisinryokuglow">精神力</label></td>
+</tr>
+<tr>
+<td><input type=radio name="sentaku" id="sentaku1" onchange="sum(1)" /><label for="sentaku1">候補1</label><br><input type=button name="re" value="ダイスロール" onclick="reroll(1);check()" ></td>
+<td><input type="text" name="kiyou1" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="binsyou1" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="kinryoku1" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="seimeiryoku1" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="tiryoku1" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="seisinryoku1" size="2" tabindex="-1" readonly></td>
+</tr>
+<tr>
+<td><input type=radio name="sentaku" id="sentaku2"  onchange="sum(2)"/><label for="sentaku2">候補2</label><br><input type=button name="re2" value="ダイスロール"  onclick="reroll(2);check()"></td>
+<td><input type="text" name="kiyou2" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="binsyou2" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="kinryoku2" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="seimeiryoku2" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="tiryoku2" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="seisinryoku2" size="2" tabindex="-1" readonly></td>
+</tr>
+<tr>
+<td><input type=radio name="sentaku" id="sentaku3"  onchange="sum(3)"/><label for="sentaku3">候補3</label><br><input type=button name="re3" value="ダイスロール" onclick="reroll(3);check()"></td>
+<td><input type="text" name="kiyou3" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="binsyou3" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="kinryoku3" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="seimeiryoku3" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="tiryoku3" size="2" tabindex="-1" readonly></td>
+<td><input type="text" name="seisinryoku3" size="2" tabindex="-1" readonly></td>
+</tr>
+<tr id="tokutyou" hidden>
+<td >種族特徴</td>
+<td><input type="text" value="0" name="kiyouplus" size="1" tabindex="-1" readonly>
+<td><input type="text" value="0" name="binsyouplus" size="1" tabindex="-1" readonly>
+<td><input type="text" value="0" name="kinryokuplus" size="1" tabindex="-1" readonly>
+<td><input type="text" value="0" name="seimeiryokuplus" size="1" tabindex="-1" readonly>
+<td><input type="text" value="0" name="tiryokuplus" size="1" tabindex="-1" readonly>
+<td><input type="text" value="0" name="seisinryokuplus" size="1" tabindex="-1" readonly>
+</tr>
+<tr>
+
+<td>能力値</td>
+<td><input type="text" id="kiyoucopy" name="kiyoucopy" size="2" tabindex="-1" readonly>
+<td><input type="text" id="binsyoucopy" name="binsyoucopy" size="2" tabindex="-1" readonly>
+<td><input type="text" id="kinryokucopy" name="kinryokucopy" size="2" tabindex="-1" readonly>
+<td><input type="text" id="seimeiryokucopy" name="seimeiryokucopy" size="2" tabindex="-1" readonly>
+<td><input type="text" id="tiryokucopy" name="tiryokucopy" size="2" tabindex="-1" readonly>
+<td><input type="text" id="seisinryokucopy" name="seisinryokucopy" size="2" tabindex="-1" readonly>
+</tr>
 </table>
+</form>
+<form name="form3">
+<input type="hidden" name="kiyou" >
+<input type="hidden" name="binsyou">
+<input type="hidden" name="kinryoku">
+<input type="hidden" name="seimeiryoku">
+<input type="hidden" name="tiryoku">
+<input type="hidden" name="seisinryoku">
 
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">エルフ</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/2d</th><th>心<br>2d/2d</th></tr>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=kensi">剣士</a></td><td>フェンサー</td><td>12</td><td>5</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=yakusi">薬師</a></td><td>セージandレンジャー</td><td>10</td><td>5</td><td>11</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=sinkan">神官</a></td><td>プリースト</td><td>9</td><td>5</td><td>12</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=soureizyutusi">操霊術師</a></td><td>コンジャラー</td><td>9</td><td>4</td><td>13</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=mazyutusi">魔術師</a></td><td>ソーサラー</td><td>10</td><td>3</td><td>13</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=syasyu">射手</a></td><td>シューター</td><td>13</td><td>5</td><td>8</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>11</td><td>5</td><td>10</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=mittei">密偵</a></td><td>スカウト</td><td>11</td><td>5</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=youseitukai">妖精使い</a></td><td>フェアリーテイマー</td><td>10</td><td>2</td><td>14</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>11</td><td>4</td><td>11</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>9</td><td>3</td><td>14</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>10</td><td>4</td><td>12</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>8</td><td>5</td><td>13</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=eruhu&umare=kisyu">騎手</a></td><td>ライダー</td><td>12</td><td>6</td><td>8</td></tr></thead>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">ドワーフ</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d+6/1d</th><th>体<br>2d/2d</th><th>心<br>1d/2d+6</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=syasyu">射手</a></td><td>シューター</td><td>6</td><td>8</td><td>6</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=sensi">戦士</a></td><td>ファイター</td><td>4</td><td>11</td><td>5</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>5</td><td>10</td><td>5</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=sinkan">神官</a></td><td>プリースト</td><td>4</td><td>7</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=madoukisi">魔動機師</a></td><td>マギテック</td><td>6</td><td>7</td><td>7</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=gakusya">学者</a></td><td>セージ</td><td>3</td><td>8</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=nobuse">野伏</a></td><td>レンジャー</td><td>6</td><td>9</td><td>5</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>5</td><td>9</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>4</td><td>8</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=youseitukai">妖精使い</a></td><td>フェアリーテイマー</td><td>5</td><td>6</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>4</td><td>7</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=kisyu">騎手</a></td><td>ライダー</td><td>4</td><td>10</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=dowahu&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>5</td><td>9</td><td>6</td></tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">タビット</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/1d</th><th>体<br>1d/2d</th><th>心<br>2d+6/2d</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=soureizyutusi">操霊術師</a></td><td>コンジャラー</td><td>6</td><td>6</td><td>10</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=mazyutusi">魔術師</a></td><td>ソーサラー</td><td>5</td><td>7</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=gakusya">学者</a></td><td>セージ</td><td>5</td><td>8</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=madoukisi">魔動機師</a></td><td>マギテック</td><td>8</td><td>5</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=madousi">魔導士</a></td><td>ソーサラーandコンジャラー</td><td>5</td><td>6</td><td>11</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=youseitukai">妖精使い</a></td><td>フェアリーテイマー</td><td>7</td><td>5</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>6</td><td>7</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=yakusi">薬師</a></td><td>レンジャー</td><td>7</td><td>6</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>6</td><td>6</td><td>10</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>5</td><td>6</td><td>11</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=tabitto&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>6</td><td>7</td><td>9</td></tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">ルーンフォーク</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/1d</th><th>体<br>2d/2d</th><th>心<br>2d/1d</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=gakusya">学者</a></td><td>セージ</td><td>8</td><td>10</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=syasyu">射手</a></td><td>シューター</td><td>12</td><td>8</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=sensi">戦士</a></td><td>ファイターorグラップラー</td><td>9</td><td>12</td><td>5</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=madoukisi">魔動機師</a></td><td>マギテック</td><td>12</td><td>8</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=mazyutusi">魔術師</a></td><td>ソーサラー</td><td>9</td><td>8</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=mittei">密偵</a></td><td>スカウト</td><td>12</td><td>6</td><td>8</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>10</td><td>8</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=keisensi">軽戦士</a></td><td>フェンサー</td><td>11</td><td>9</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>8</td><td>9</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=soureizyutusi">操霊術師</a></td><td>コンジャラー</td><td>7</td><td>9</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>9</td><td>9</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=kisyu">騎手</a></td><td>ライダー</td><td>10</td><td>11</td><td>5</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=runfoku&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>10</td><td>9</td><td>7</td></tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">ナイトメア</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/1d</th><th>心<br>2d/2d</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=mazyutusi">魔術師</a></td><td>ソーサラー</td><td>5</td><td>13</td><td>12</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=youhei">傭兵</a></td><td>ファイターorグラップラー</td><td>7</td><td>15</td><td>8</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=keisensi">軽戦士</a></td><td>フェンサーandスカウト</td><td>11</td><td>13</td><td>6</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=sinkan">神官</a></td><td>プリースト</td><td>6</td><td>14</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=madoukisi">魔動機師</a></td><td>マギテック</td><td>9</td><td>9</td><td>12</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>8</td><td>13</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>9</td><td>14</td><td>7</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=syasyu">射手</a></td><td>シューター</td><td>10</td><td>10</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=nobuse">野伏</a></td><td>レンジャー</td><td>9</td><td>12</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=soureizyutusi">総霊術師</a></td><td>コンジャラー</td><td>6</td><td>11</td><td>13</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>7</td><td>12</td><td>11</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>8</td><td>10</td><td>12</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=kisyu">騎手</a></td><td>ライダー</td><td>10</td><td>13</td><td>7</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=naitomea&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>11</td><td>9</td><td>10</td></tr></thead>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">リカント</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/1d+3</th><th>体<br>2d/2d</th><th>心<br>1d+6/1d</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=mittei">密偵</a></td><td>スカウト</td><td>13</td><td>5</td><td>7</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=sensi">戦士</a></td><td>ファイター</td><td>10</td><td>9</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>11</td><td>7</td><td>7</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=keisensi">軽戦士</a></td><td>フェンサー　　　　</td><td>12</td><td>6</td><td>7</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=nobuse">野伏</a></td><td>レンジャー</td><td>9</td><td>8</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>8</td><td>9</td><td>8</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=syasyu">射手</a></td><td>シューター</td><td>11</td><td>8</td><td>6</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>10</td><td>8</td><td>7</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=gakusya">学者</a></td><td>セージ</td><td>10</td><td>7</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=sinkan">神官</a></td><td>プリースト</td><td>9</td><td>7</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>9</td><td>7</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rikanto&umare=kisyu">騎手</a></td><td>ライダー</td><td>11</td><td>8</td><td>6</td></tr></thead>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-
-<table>
-<tbody><tr><th colspan="5"  align="center">リルドラケン</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/2d</th><th>体<br>2d/2d+6</th><th>心<br>1d/2d</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=nobuse">野伏</a></td><td>レンジャー</td><td>6</td><td>12</td><td>7</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>6</td><td>13</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=sensi">戦士</a></td><td>ファイター</td><td>5</td><td>14</td><td>6</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=syounin">商人</a></td><td>セージ</td><td>5</td><td>11</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=sinkan">神官</a></td><td>プリースト</td><td>4</td><td>13</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=syasyu">射手</a></td><td>シューター</td><td>7</td><td>12</td><td>6</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=keisensi">軽戦士</a></td><td>フェンサー</td><td>6</td><td>11</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>5</td><td>12</td><td>8</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=mahoutukai">魔法使い</a></td><td>ソーサラーorコンジャラー</td><td>4</td><td>12</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=youseitukai">妖精使い</a></td><td>フェアリーテイマー</td><td>3</td><td>12</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>5</td><td>12</td><td>8</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>4</td><td>12</td><td>9</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=kisyu">騎手</a></td><td>ライダー</td><td>6</td><td>13</td><td>6</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=rirudoraken&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>5</td><td>13</td><td>7</td></tr></thead>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-
-<table>
-<tbody><tr><th colspan="5"  align="center">グラスランナー</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/2d+6</th><th>心<br>1d/2d+6</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=nusutto">盗っ人</a></td><td>スカウト</td><td>13</td><td>0</td><td>12</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=keisensi">軽戦士</a></td><td>フェンサー</td><td>14</td><td>1</td><td>10</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=nobuse">野伏</a></td><td>レンジャー</td><td>12</td><td>1</td><td>12</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=syasyu">射手</a></td><td>シューター</td><td>14</td><td>0</td><td>11</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=syumizin">趣味人</a></td><td>セージorバード</td><td>12</td><td>0</td><td>13</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=gakusya">学者</a></td><td>セージ</td><td>11</td><td>1</td><td>13</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=kentousi">拳闘士</a></td><td>グラップラー</td><td>14</td><td>2</td><td>9</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=tabibito">旅人</a></td><td>なし</td><td>11</td><td>2</td><td>12</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=mittei">密偵</a></td><td>フェンサーandスカウト</td><td>15</td><td>0</td><td>10</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>12</td><td>0</td><td>13</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=kisyu">騎手</a></td><td>ライダー</td><td>13</td><td>1</td><td>11</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=gurasuranna&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>13</td><td>0</td><td>12</td></tr></thead>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-
-<table>
-<tbody><tr><th colspan="5"  align="center">メリア</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/1d</th><th>体<br>1d/2d+6</th><th>心<br>1d/2d+6</th></th>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=keisensi">軽戦士</a></td><td>フェンサー</td><td>14</td><td>1</td><td>10</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=nobuse">野伏</a></td><td>レンジャー</td><td>9</td><td>8</td><td>12</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=sinkan">神官</a></td><td>プリースト</td><td>8</td><td>8</td><td>13</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=youseitukai">妖精使い</a></td><td>フェアリーテイマー</td><td>8</td><td>7</td><td>14</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=mazyutusi">魔術師</a></td><td>ソーサラー</td><td>8</td><td>6</td><td>15</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=soureizyutusi">操霊術師</a></td><td>コンジャラー</td><td>7</td><td>6</td><td>16</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=syasyu">射手</a></td><td>シューター</td><td>10</td><td>7</td><td>12</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=keisensi">軽戦士</a></td><td>フェンサー</td><td>10</td><td>8</td><td>11</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=madousi">魔導士</a></td><td>ソーサラーandコンジャラー</td><td>8</td><td>5</td><td>16</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=ginyuusizin">吟遊詩人</a></td><td>バード</td><td>7</td><td>7</td><td>15</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=rentaisi">錬体士</a></td><td>エンハンサー</td><td>9</td><td>9</td><td>11</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=mazintukai">魔神使い</a></td><td>デーモンルーラー</td><td>7</td><td>7</td><td>15</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=sinradousi">森羅導師</a></td><td>ドルイド</td><td>6</td><td>7</td><td>16</td></tr>
-<tr class="cell"><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=kisyu">騎手</a></td><td>ライダー</td><td>8</td><td>9</td><td>12</td></tr></thead>
-<tr><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=meria&umare=renkinzyutusi">錬金術師</a></td><td>アルケミスト</td><td>9</td><td>7</td><td>13</td></tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-　　　
+<button type="submit" formaction="https://shizuku16.github.io/sw_glow/" formmethod="get"  onfocus="sub()">この値で能力成長を行う</button>
+</form>
+<form name="form4" id="form4" onsubmit="return yuusya()">
+<button type="submit" formaction="https://shizuku16.github.io/sw_glow2/" formmethod="get">チェックした能力で勇者の種成長を行う</button>
+<input type="hidden" value="能力値" id="nouryoku1" name="nouryoku1">
+<input type="hidden" value="能力値" id="nouryoku2" name="nouryoku2">
+<input type="hidden" value="能力値" id="nouryoku3" name="nouryoku3">
+<input type="hidden" value="能力値" id="nouryoku4" name="nouryoku4"><br>
+<input type="hidden" value="0" id="yuusya1" name="yuusya1">
+<input type="hidden" value="0" id="yuusya2" name="yuusya2">
+<input type="hidden" value="0" id="yuusya3" name="yuusya3">
+<input type="hidden" value="0" id="yuusya4" name="yuusya4">
+<input type="hidden" value="0" id="yuusya5" name="yuusya5">
+<input type="hidden" value="0" id="yuusya6" name="yuusya6">
 
 
-<table>
-<tbody><tr><th colspan="5"  align="center">ティエンス</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/1d+3</th><th>心<br>2d/2d+3</th></tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=kisyu">騎手</a></td>
-		<td>ライダー</td>
-		<td>10</td>
-		<td>11</td>
-		<td>7</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=kentousi">拳闘士</a></td>
-		<td>グラップラー</td>
-		<td>9</td>
-		<td>13</td>
-		<td>6</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=sensi">戦士</a></td>
-		<td>ファイター</td>
-		<td>8</td>
-		<td>12</td>
-		<td>8</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=sinkan">神官</a></td>
-		<td>プリースト</td>
-		<td>7</td>
-		<td>12</td>
-		<td>9</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=mahoutukai">魔法使い</a></td>
-		<td>ソーサラー</td>
-		<td>6</td>
-		<td>12</td>
-		<td>10</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=syasyu">射手</a></td>
-		<td>シューター</td>
-		<td>11</td>
-		<td>12</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=mittei">密偵</a></td>
-		<td>スカウト</td>
-		<td>10</td>
-		<td>10</td>
-		<td>8</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=mahousensi">魔法戦士</a></td>
-		<td>ファイターandソーサラー</td>
-		<td>9</td>
-		<td>11</td>
-		<td>8</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=youseitukai">妖精使い</a></td>
-		<td>フェアリーテイマー</td>
-		<td>7</td>
-		<td>11</td>
-		<td>10</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=gakusya">学者</a></td>
-		<td>セージ</td>
-		<td>8</td>
-		<td>11</td>
-		<td>9</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=mazintukai">魔神使い</a></td>
-		<td>デーモンルーラー</td>
-		<td>7</td>
-		<td>12</td>
-		<td>9</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=sinradousi">森羅導師</a></td>
-		<td>ドルイド</td>
-		<td>8</td>
-		<td>10</td>
-		<td>10</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=thiensu&umare=renkinzyutusi">錬金術師</a></td>
-		<td>アルケミスト</td>
-		<td>9</td>
-		<td>11</td>
-		<td>8</td>
-	</tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">レプラカーン</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/1d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=keisensi">軽戦士</a></td>
-		<td>フェンサー</td>
-		<td>13</td>
-		<td>5</td>
-		<td>5</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=syasyu">射手</a></td>
-		<td>シューター</td>
-		<td>12</td>
-		<td>6</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=mittei">密偵</a></td>
-		<td>スカウト</td>
-		<td>14</td>
-		<td>4</td>
-		<td>5</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=youseitukai">妖精使い</a></td>
-		<td>フェアリーテイマー</td>
-		<td>11</td>
-		<td>4</td>
-		<td>8</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=renkinzyutusi">錬金術師</a></td>
-		<td>アルケミスト</td>
-		<td>11</td>
-		<td>5</td>
-		<td>7</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=nobuse">野伏</a></td>
-		<td>レンジャー</td>
-		<td>12</td>
-		<td>5</td>
-		<td>6</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=syumizin">趣味人</a></td>
-		<td>セージandバード</td>
-		<td>13</td>
-		<td>4</td>
-		<td>6</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=madoukisi">魔動機師</a></td>
-		<td>マギテック</td>
-		<td>12</td>
-		<td>4</td>
-		<td>7</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=sinkan">神官</a></td>
-		<td>プリースト</td>
-		<td>10</td>
-		<td>5</td>
-		<td>8</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=madousi">魔導士</a></td>
-		<td>ソーサラーorコンジャラー</td>
-		<td>11</td>
-		<td>3</td>
-		<td>9</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=mahoutukai">魔神使い</a></td>
-		<td>デーモンルーラー</td>
-		<td>12</td>
-		<td>4</td>
-		<td>7</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=sinradousi">森羅導師</a></td>
-		<td>ドルイド</td>
-		<td>11</td>
-		<td>4</td>
-		<td>8</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=repurakan&umare=kisyu">騎手</a></td>
-		<td>ライダー</td>
-		<td>13</td>
-		<td>6</td>
-		<td>4</td>
-	</tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">アルヴ</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/1d+3</th><th>体<br>2d+3/2d</th><th>心<br>1d+6/1d</th></tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=mittei">密偵</a></td>
-		<td>スカウト</td>
-		<td>12</td>
-		<td>5</td>
-		<td>8</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=keisensi">軽戦士</a></td>
-		<td>フェンサー</td>
-		<td>12</td>
-		<td>6</td>
-		<td>7</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=mahoutukai">魔法使い</a></td>
-		<td>ソーサラー</td>
-		<td>9</td>
-		<td>5</td>
-		<td>11</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=sinkan">神官</a></td>
-		<td>プリースト</td>
-		<td>10</td>
-		<td>6</td>
-		<td>9</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=gakusya">学者</a></td>
-		<td>セージ</td>
-		<td>10</td>
-		<td>5</td>
-		<td>10</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=syasyu">射手</a></td>
-		<td>シューター</td>
-		<td>13</td>
-		<td>4</td>
-		<td>8</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=kentousi">拳闘士</a></td>
-		<td>グラップラー</td>
-		<td>11</td>
-		<td>7</td>
-		<td>7</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=soureizyutusi">操霊術師</a></td>
-		<td>コンジャラー</td>
-		<td>9</td>
-		<td>4</td>
-		<td>12</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=mazintukai">魔神使い</a></td>
-		<td>デーモンルーラー　</td>
-		<td>9</td>
-		<td>6</td>
-		<td>10</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=aruvu&umare=madoukisi">魔動機師</a></td>
-		<td>マギテック</td>
-		<td>9</td>
-		<td>7</td>
-		<td>9</td>
-	</tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">ウィークリング</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=haiseki">斥候</a></td>
-		<td>スカウト</td>
-		<td>10</td>
-		<td>7</td>
-		<td>6</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=keisensi">軽戦士</a></td>
-		<td>フェンサー</td>
-		<td>9</td>
-		<td>8</td>
-		<td>6</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=sensi">戦士</a></td>
-		<td>ファイター</td>
-		<td>8</td>
-		<td>10</td>
-		<td>5</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=sinkan">神官</a></td>
-		<td>プリースト</td>
-		<td>7</td>
-		<td>9</td>
-		<td>7</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=mahoutukai">魔法使い</a></td>
-		<td>ソーサラー</td>
-		<td>7</td>
-		<td>8</td>
-		<td>8</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=rentaisi">錬体士</a></td>
-		<td>エンハンサー</td>
-		<td>8</td>
-		<td>8</td>
-		<td>7</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=syasyu">射手</a></td>
-		<td>シューター</td>
-		<td>10</td>
-		<td>8</td>
-		<td>5</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=kentousi">拳闘士</a></td>
-		<td>グラップラー</td>
-		<td>9</td>
-		<td>9</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=sinradousi">森羅導師</a></td>
-		<td>ドルイド</td>
-		<td>7</td>
-		<td>7</td>
-		<td>9</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=wikuringu&umare=mazintukai">魔神使い</a></td>
-		<td>デーモンルーラー　　　　　</td>
-		<td>7</td>
-		<td>8</td>
-		<td>8</td>
-	</tr>
-
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">シャドウ</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/1d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=nobuse">野伏</a></td>
-		<td>レンジャー</td>
-		<td>15</td>
-		<td>6</td>
-		<td>6</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=kensi">剣士</a></td>
-		<td>フェンサー</td>
-		<td>17</td>
-		<td>7</td>
-		<td>3</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=mittei">密偵</a></td>
-		<td>スカウト</td>
-		<td>16</td>
-		<td>7</td>
-		<td>4</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=kentousi">拳闘士</a></td>
-		<td>グラップラー</td>
-		<td>14</td>
-		<td>8</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=sensi">戦士</a></td>
-		<td>ファイター</td>
-		<td>15</td>
-		<td>9</td>
-		<td>3</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=madoukisi">魔動機師</a></td>
-		<td>マギテック</td>
-		<td>17</td>
-		<td>5</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=syasyu">射手</a></td>
-		<td>シューター</td>
-		<td>18</td>
-		<td>6</td>
-		<td>3</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=rentaisi">錬体士</a></td>
-		<td>エンハンサー</td>
-		<td>16</td>
-		<td>6</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=renkinzyutusi">錬金術師</a></td>
-		<td>アルケミスト　　　　　　　</td>
-		<td>14</td>
-		<td>8</td>
-		<td>5</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=syadou&umare=kisyu">騎手</a></td>
-		<td>ライダー</td>
-		<td>13</td>
-		<td>7</td>
-		<td>7</td>
-	</tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-　　　
-<table>
-<tbody><tr><th colspan="5"  align="center">ソレイユ</th></tr></tbody>
-<tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>1d/2d</th><th>体<br>1d+6/2d</th><th>心<br>1d/2d</th></tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=sinkan">神官</a></td>
-		<td>プリースト</td>
-		<td>9</td>
-		<td>13</td>
-		<td>4</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=keisensi">軽戦士</a></td>
-		<td>フェンサー</td>
-		<td>12</td>
-		<td>12</td>
-		<td>2</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=sensi">戦士</a></td>
-		<td>ファイター</td>
-		<td>10</td>
-		<td>15</td>
-		<td>1</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=kentousi">拳闘士</a></td>
-		<td>グラップラー</td>
-		<td>12</td>
-		<td>14</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=nobuse">野伏</a></td>
-		<td>レンジャー</td>
-		<td>10</td>
-		<td>13</td>
-		<td>3</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=syasyu">射手</a></td>
-		<td>シューター</td>
-		<td>11</td>
-		<td>14</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=kisyu">騎手</a></td>
-		<td>ライダー</td>
-		<td>11</td>
-		<td>13</td>
-		<td>2</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=renkinzyutusi">錬金術師</a></td>
-		<td>アルケミスト　　　　　</td>
-		<td>10</td>
-		<td>11</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=syumizin">趣味人</a></td>
-		<td>バード</td>
-		<td>11</td>
-		<td>11</td>
-		<td>4</td>
-	</tr>
-	<tr class="cell">
-		<td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=soreiyu&umare=haiseki">斥候</a></td>
-		<td>スカウト</td>
-		<td>12</td>
-		<td>11</td>
-		<td>3</td>
-	</tr>
-<tr><td colspan="5"  class="blind">　</td></tr>
-</table>
-
-
-<br>
 </form>
 </body>
 </html>
