@@ -4,10 +4,10 @@
 	<title>種族能力値</title>
 	<style>
 	td,th{border:solid 1px #aaaaaa;padding:1px 10px}
-	table{border-collapse:collapse;}
-	input[type=radio]{width:15px;height:15px;}:disabled{
-	-webkit-appearance:none;	
-	color:#000000;}
+	table{
+		border-collapse:collapse;
+		padding: 10px;
+	}
 	.cell {
 		background-color: #dcdcdc;
 		color: #000000;
@@ -15,11 +15,8 @@
 	.hyou  {
 	  display:flex;
 	  flex-wrap: wrap;
-	  align-content: space-between;
-	  height: 500px;
-	}
-	.hyou2  {
-	  display:;
+	  gap: 40px 20px;
+	  padding-bottom: 20px;
 	}
 	
 	.blind{
@@ -27,140 +24,110 @@
 	 border-left: 3px solid white;
 	 border-right: 3px solid white;
 	}
+	.footer{
+		height: 50px;
+	}
 	
 	</style>
 	
 	<script>
 		function load(){
-			var ningen=["ningen",["madoukisi","魔動機師","マギテック","8","4","9"],["madousi","魔導士","ソーサラー","6","5","10"],["keisensi","軽戦士","スカウトandフェンサー","10","7","4"],["ippanzin","一般人","なし","7","7","7"],["youhei","傭兵","ファイターorグラップラー","7","10","4"],["sinkan","神官","プリースト","4","8","9"],["soureizyutusi","操霊術師","コンジャラー","7","4","10"],["syasyu","射手","シューター","9","5","7"],["kensi","剣士","フェンサー","9","6","6"],["kentousi","拳闘士","グラップラー","8","8","5"],["sensi","戦士","ファイター","7","9","5"],["rentaisi","錬体士","エンハンサー","6","8","7"],["kazin","歌人","バード","5","7","9"],["youseitukai","妖精使い","フェアリーテイマー","5","6","10"],["mazintukai","魔神使い","デーモンルーラー","6","6","9"],["sinradousi","森羅導師","ドルイド","5","6","10"],["kisyu","騎手","ライダー","8","8","5"],["renkinzyutusi","錬金術師","アルケミスト","7","6","8"],["boukensya","冒険者","なし","2d","2d","2d"],["mazintukaiBM","魔神使い(BM)","デーモンルーラー","3","8","10"],["tentitukaiBM","天地使い(BM)","ジオマンサー","5","9","7"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","8","5","8"],["odorikoBM","踊り子(BM)","バトルダンサー","10","6","5"],["kisyuBM","騎手(BM)","ライダー","6","8","7"],["gunsiBM","軍師(BM)","ウォーリーダー","8","6","7"],["sinradousiBM","森羅同士(BM)","ドルイド","4","7","10"]]
-			var eruhu=["eruhu",["kensi","剣士","フェンサー","12","5","9"],["yakusi","薬師","セージandレンジャー","10","5","11"],["sinkan","神官","プリースト","9","5","12"],["soureizyutusi","操霊術師","コンジャラー","9","4","13"],["mazyutusi","魔術師","ソーサラー","10","3","13"],["syasyu","射手","シューター","13","5","8"],["rentaisi","錬体士","エンハンサー","11","5","10"],["mittei","密偵","スカウト","12","4","10"],["youseitukai","妖精使い","フェアリーテイマー","10","2","14"],["kentousi","拳闘士","グラップラー","11","4","11"],["ginyuusizin","吟遊詩人","バード","9","3","14"],["mazintukai","魔神使い","デーモンルーラー","10","4","12"],["sinradousi","森羅導師","ドルイド","8","5","13"],["kisyu","騎手","ライダー","12","6","8"],["mazintukaiBM","魔人使い(BM)","デーモンルーラー","9","4","13"],["tentitukaiBM","天地使い(BM)","ジオマンサー","10","4","12"],["odorikoBM","踊り子(BM)","バトルダンサー","13","5","8"],["gunsiBM","軍師(BM)","ウォーリーダー","11","4","11"],["sinradousiBM","森羅導師(BM)","ドルイド","10","3","13"]]
-			var dowahu=["dowahu",["syasyu","射手","シューター","6","8","6"],["sensi","戦士","ファイター","4","11","5"],["kentousi","拳闘士","グラップラー","5","10","5"],["sinkan","神官","プリースト","4","7","9"],["madoukisi","魔動機師","マギテック","6","7","7"],["gakusya","学者","セージ","3","8","9"],["nobuse","野伏","レンジャー","6","9","5"],["rentaisi","錬体士","エンハンサー","5","9","6"],["ginyuusizin","吟遊詩人","バード","4","8","8"],["youseitukai","妖精使い","フェアリーテイマー","5","6","9"],["sinradousi","森羅導師","ドルイド","4","7","9"],["kisyu","騎手","ライダー","4","10","6"],["renkinzyutusi","錬金術師","アルケミスト","5","9","6"],["tentitukaiBM","天地使い(BM)","ジオマンサー","6","6","8"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","6","7","7"],["odorikoBM","踊り子(BM)","バトルダンサー","6","10","4"],["kisyuBM","騎手(BM)","ライダー","5","9","6"],["gunsiBM","軍師(BM)","ウォーリーダー","5","8","7"],["mazintukaiBM","魔人使い(BM)","デーモンルーラー","5","6","11"],["tentitukaiBM","天地使い(BM)","ジオマンサー","5","8","9"],["sinradousiBM","森羅導師(BM)","ドルイド","7","5","10"],["gunsiBM","軍師(BM)","ウォーリーダー","8","6","8"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","7","7","8"]]
-			var tabitto=["tabitto",["soureizyutusi","操霊術師","コンジャラー","6","6","10"],["mazyutusi","魔術師","ソーサラー","5","7","10"],["gakusya","学者","セージ","5","8","9"],["madoukisi","魔動機師","マギテック","8","5","9"],["madousi","魔導士","ソーサラーandコンジャラー","5","6","11"],["youseitukai","妖精使い","フェアリーテイマー","7","5","10"],["ginyuusizin","吟遊詩人","バード","6","7","9"],["yakusi","薬師","レンジャー","7","6","9"],["mazintukai","魔神使い","デーモンルーラー","6","6","10"],["sinradousi","森羅導師","ドルイド","5","6","11"],["renkinzyutusi","錬金術師","アルケミスト","6","7","9"],["mazintukaiBM","魔人使い(BM)","デーモンルーラー","5","6","11"],["tentitukaiBM","天地使い(BM)","ジオマンサー","5","8","9"],["sinradousiBM","森羅導師(BM)","ドルイド","7","5","10"],["gunsiBM","軍師(BM)","ウォーリーダー","8","6","8"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","7","7","8"]]
-			var runfoku=["runfoku",["gakusya","学者","セージ","8","10","8"],["syasyu","射手","シューター","12","8","6"],["sensi","戦士","ファイターorグラップラー","9","12","5"],["madoukisi","魔動機師","マギテック","12","8","6"],["mazyutusi","魔術師","ソーサラー","9","8","9"],["mittei","密偵","スカウト","12","6","8"],["rentaisi","錬体士","エンハンサー","10","8","8"],["keisensi","軽戦士","フェンサー","11","9","6"],["ginyuusizin","吟遊詩人","バード","8","9","9"],["soureizyutusi","操霊術師","コンジャラー","7","9","10"],["mazintukai","魔神使い","デーモンルーラー","9","9","8"],["kisyu","騎手","ライダー","10","11","5"],["renkinzyutusi","錬金術師","アルケミスト","10","9","7"],["tentitukaiBM","天地使い(BM)","ジオマンサー","10","10","6"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","11","8","7"],["odorikoBM","踊り子(BM)","バトルダンサー","12","9","5"],["kisyuBM","騎手(BM)","ライダー","9","9","8"],["gunsiBM","軍師(BM)","ウォーリーダー","10","8","8"]]
-			var naitomea=["naitomea",["mazyutusi","魔術師","ソーサラー","5","13","12"],["youhei","傭兵","ファイターorグラップラー","7","15","8"],["keisensi","軽戦士","フェンサーandスカウト","11","13","6"],["sinkan","神官","プリースト","6","14","10"],["madoukisi","魔動機師","マギテック","9","9","12"],["ginyuusizin","吟遊詩人","バード","8","13","9"],["rentaisi","錬体士","エンハンサー","9","14","7"],["syasyu","射手","シューター","10","10","10"],["nobuse","野伏","レンジャー","9","12","9"],["soureizyutusi","総霊術師","コンジャラー","6","11","13"],["mazintukai","魔神使い","デーモンルーラー","7","12","11"],["sinradousi","森羅導師","ドルイド","8","10","12"],["kisyu","騎手","ライダー","10","13","7"],["renkinzyutusi","錬金術師","アルケミスト","11","9","10"],["mazintukaiBM","魔人使い(BM)","デーモンルーラー","7","10","13"],["kisyuBM","騎手(BM)","ライダー","10","12","8"],["odorikoBM","踊り子","バトルダンサー","11","12","7"],["gunsiBM","軍師(BM)","ウォーリーダー","9","13","8"],["sinradousiBM","森羅導師(BM)","ドルイド","8","10","12"]]
-			var rikanto=["rikanto",["mittei","密偵","スカウト","13","5","7"],["sensi","戦士","ファイター","10","9","6"],["kentousi","拳闘士","グラップラー","11","7","7"],["keisensi","軽戦士","フェンサー　　","12","6","7"],["nobuse","野伏","レンジャー","9","8","8"],["ginyuusizin","吟遊詩人","バード","8","9","8"],["syasyu","射手","シューター","11","8","6"],["rentaisi","錬体士","エンハンサー","10","8","7"],["gakusya","学者","セージ","10","7","8"],["sinkan","神官","プリースト","9","7","9"],["sinradousi","森羅導師","ドルイド","9","7","9"],["kisyu","騎手","ライダー","11","8","6"],["tentitukaiBM","天地使い(BM)","ジオマンサー","10","7","8"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","12","7","6"],["odorikoBM","踊り子(BM)","バトルダンサー","13","6","6"],["kisyuBM","騎手(BM)","ライダー","10","8","7"],["gunsiBM","軍師(BM)","ウォーリーダー","9","9","7"]]
-			var rirudoraken=["rirudoraken",["nobuse","野伏","レンジャー","6","12","7"],["kentousi","拳闘士","グラップラー","6","13","6"],["sensi","戦士","ファイター","5","14","6"],["syounin","商人","セージ","5","11","9"],["sinkan","神官","プリースト","4","13","8"],["syasyu","射手","シューター","7","12","6"],["keisensi","軽戦士","フェンサー","6","11","8"],["rentaisi","錬体士","エンハンサー","5","12","8"],["mahoutukai","魔法使い","ソーサラーorコンジャラー","4","12","9"],["youseitukai","妖精使い","フェアリーテイマー","3","12","10"],["mazintukai","魔神使い","デーモンルーラー","5","12","8"],["sinradousi","森羅導師","ドルイド","4","12","9"],["kisyu","騎手","ライダー","6","13","6"],["renkinzyutusi","錬金術師","アルケミスト","5","13","7"],["tentitukaiBM","天地使い(BM)","ジオマンサー","4","13","8"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","5","13","7"],["odorikoBM","踊り子(BM)","バトルダンサー","6","14","5"],["gunsiBM","軍師(BM)","ウォーリーダー","5","12","8"],["sinradousiBM","森羅同士(BM)","ドルイド","5","11","9"]]
-			var gurasuranna=["gurasuranna",["nusutto","盗っ人","スカウト","13","0","12"],["keisensi","軽戦士","フェンサー","14","1","10"],["nobuse","野伏","レンジャー","12","1","12"],["syasyu","射手","シューター","14","0","11"],["syumizin","趣味人","セージorバード","12","0","13"],["gakusya","学者","セージ","11","1","13"],["kentousi","拳闘士","グラップラー","14","2","9"],["tabibito","旅人","なし","11","2","12"],["mittei","密偵","フェンサーandスカウト","15","0","10"],["ginyuusizin","吟遊詩人","バード","12","0","13"],["kisyu","騎手","ライダー","13","1","11"],["renkinzyutusi","錬金術師","アルケミスト","13","0","12"],["tentitukaiBM","天地使い(BM)","ジオマンサー","11","1","13"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","12","1","12"],["odorikoBM","踊り子(BM)","バトルダンサー","13","1","11"],["kisyuBM","騎手(BM)","ライダー","12","0","13"],["gunsiBM","軍師(BM)","ウォーリーダー","11","1","13"]]
-			var meria=["meria",["nobuse","野伏","レンジャー","9","8","12"],["sinkan","神官","プリースト","8","8","13"],["youseitukai","妖精使い","フェアリーテイマー","8","7","14"],["mazyutusi","魔術師","ソーサラー","8","6","15"],["soureizyutusi","操霊術師","コンジャラー","7","6","16"],["syasyu","射手","シューター","10","7","12"],["keisensi","軽戦士","フェンサー","10","8","11"],["madousi","魔導士","ソーサラーandコンジャラー","8","5","16"],["ginyuusizin","吟遊詩人","バード","7","7","15"],["rentaisi","錬体士","エンハンサー","9","9","11"],["mazintukai","魔神使い","デーモンルーラー","7","7","15"],["sinradousi","森羅導師","ドルイド","6","7","16"],["kisyu","騎手","ライダー","8","9","12"],["renkinzyutusi","錬金術師","アルケミスト","9","7","13"],["mazintukaiBM","魔神使い(BM)","デーモンルーラー","7","8","14"],["tentitukaiBM","天地使い(BM)","ジオマンサー","8","9","12"],["odorikoBM","踊り子(BM)","バトルダンサー","9","8","12"],["gunsiBM","軍師(BM)","ウォーリーダー","8","8","13"],["sinradousiBM","森羅導師(BM)","ドルイド","7","7","15"]]
-			var thiensu=["thiensu",["kisyu","騎手","ライダー","10","11","7"],["kentousi","拳闘士","グラップラー","9","13","6"],["sensi","戦士","ファイター","8","12","8"],["sinkan","神官","プリースト","7","12","9"],["mahoutukai","魔法使い","ソーサラー","6","12","10"],["syasyu","射手","シューター","11","12","5"],["mittei","密偵","スカウト","10","10","8"],["mahousensi","魔法戦士","ファイターandソーサラー","9","11","8"],["youseitukai","妖精使い","フェアリーテイマー","7","11","10"],["gakusya","学者","セージ","8","11","9"],["mazintukai","魔神使い","デーモンルーラー","7","12","9"],["sinradousi","森羅導師","ドルイド","8","10","10"],["renkinzyutusi","錬金術師","アルケミスト","9","11","8"],["mazintukaiBM","魔神使い(BM)","デーモンルーラー","7","11","10"],["tentidukaiBM","天地使い(BM)","ジオマンサー","8","11","9"],["odorikoBM","踊り子(BM)","バトルダンサー","10","13","5"],["gunsiBM","軍師(BM)","ウォーリーダー","9","11","8"],["sinradousiBM","森羅導師(BM)","ドルイド","6","12","10"]]
-			var repurakan=["repurakan",["keisensi","軽戦士","フェンサー","13","5","5"],["syasyu","射手","シューター","12","6","5"],["mittei","密偵","スカウト","14","4","5"],["youseitukai","妖精使い","フェアリーテイマー","11","4","8"],["renkinzyutusi","錬金術師","アルケミスト","11","5","7"],["nobuse","野伏","レンジャー","12","5","6"],["syumizin","趣味人","セージandバード","13","4","6"],["madoukisi","魔動機師","マギテック","12","4","7"],["sinkan","神官","プリースト","10","5","8"],["madousi","魔導士","ソーサラーorコンジャラー","11","3","9"],["mahoutukai","魔神使い","デーモンルーラー","12","4","7"],["sinradousi","森羅導師","ドルイド","11","4","8"],["kisyu","騎手","ライダー","13","6","4"],["mazintukaiBM","魔神使い(BM)","デーモンルーラー","11","3","9"],["tentitukaiBM","天地使い(BM)","ジオマンサー","10","6","7"],["odorikoBM","踊り子(BM)","バトルダンサー","13","5","5"],["renkinzyutusiBM","錬金術師(BM)","アルケミスト","14","4","5"],["sinradousiBM","森羅導師(BM)","ドルイド","12","3","8"]]
-			var aruvu=["aruvu",["mittei","密偵","スカウト","12","5","8"],["keisensi","軽戦士","フェンサー","12","6","7"],["mahoutukai","魔法使い","ソーサラー","9","5","11"],["sinkan","神官","プリースト","10","6","9"],["gakusya","学者","セージ","10","5","10"],["syasyu","射手","シューター","13","4","8"],["kentousi","拳闘士","グラップラー","11","7","7"],["soureizyutusi","操霊術師","コンジャラー","9","4","12"],["mazintukai","魔神使い","デーモンルーラー","9","6","10"],["madoukisi","魔動機師","マギテック","9","7","9"],["tentitukaiBM","天地使い(BM)","ジオマンサー","11","6","8"],["odorikoBM","踊り子(BM)","バトルダンサー","13","5","7"],["gunsiBM","軍師(BM)","ウォーリーダー","10","6","9"]]
-			var wikuringu=["wikuringu",["haiseki","斥候","スカウト","10","7","6"],["keisensi","軽戦士","フェンサー","9","8","6"],["sensi","戦士","ファイター","8","10","5"],["sinkan","神官","プリースト","7","9","7"],["mahoutukai","魔法使い","ソーサラー","7","8","8"],["rentaisi","錬体士","エンハンサー","8","8","7"],["syasyu","射手","シューター","10","8","5"],["kentousi","拳闘士","グラップラー","9","9","5"],["sinradousi","森羅導師","ドルイド","7","7","9"],["mazintukai","魔神使い","デーモンルーラー","7","8","8"],["tentitukaiBM","天地使い(BM)","ジオマンサー","7","8","8"],["odorikoBM","踊り子(BM)","バトルダンサー","10","8","5"],["gunsiBM","軍師(BM)","ウォーリーダー","9","7","7"]]
-			var syadou=["syadou",["nobuse","野伏","レンジャー","15","6","6"],["kensi","剣士","フェンサー","17","7","3"],["mittei","密偵","スカウト","16","7","4"],["kentousi","拳闘士","グラップラー","14","8","5"],["sensi","戦士","ファイター","15","9","3"],["madoukisi","魔動機師","マギテック","17","5","5"],["syasyu","射手","シューター","18","6","3"],["rentaisi","錬体士","エンハンサー","16","6","5"],["renkinzyutusi","錬金術師","アルケミスト","14","8","5"],["kisyu","騎手","ライダー","13","7","7"],["tentitukaiBM","天地使い(BM)","ジオマンサー","14","6","7"],["odorikoBM","踊り子(BM)","バトルダンサー","17","7","3"],["gunsiBM","軍師(BM)","ウォーリーダー","15","8","4"]]
-			var soreiyu=["soreiyu",["sinkan","神官","プリースト","9","13","4"],["keisensi","軽戦士","フェンサー","12","12","2"],["sensi","戦士","ファイター","10","15","1"],["kentousi","拳闘士","グラップラー","12","14","0"],["nobuse","野伏","レンジャー","10","13","3"],["syasyu","射手","シューター","11","14","1"],["kisyu","騎手","ライダー","11","13","2"],["renkinzyutusi","錬金術師","アルケミスト","10","11","5"],["syumizin","趣味人","バード","11","11","4"],["haiseki","斥候","スカウト","12","11","3"],["tentitukaiBM","天地使い(BM)","ジオマンサー","10","12","4"],["odorikoBM","踊り子(BM)","バトルダンサー","12","13","1"],["gunsiBM","軍師(BM)","ウォーリーダー","11","12","3"]]
+            const table={}
+			table.ningen={japanese:"人間", dice:[2, 2, 2, 2, 2, 2], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"madoukisi", gi:"8", tai:"4", sin:"9"}, {umare:"mazyutusi", gi:"6", tai:"5", sin:"10"}, {umare:"keisensi", gi:"10", tai:"7", sin:"4"}, {umare:"ippanzin", gi:"7", tai:"7", sin:"7"}, {umare:"youhei", gi:"7", tai:"10", sin:"4"}, {umare:"sinkan", gi:"4", tai:"8", sin:"9"}, {umare:"soureizyutusi", gi:"7", tai:"4", sin:"10"}, {umare:"syasyu", gi:"9", tai:"5", sin:"7"}, {umare:"kensi", gi:"9", tai:"6", sin:"6"}, {umare:"kentousi", gi:"8", tai:"8", sin:"5"}, {umare:"sensi", gi:"7", tai:"9", sin:"5"}, {umare:"rentaisi", gi:"6", tai:"8", sin:"7"}, {umare:"kazin", gi:"5", tai:"7", sin:"9"}, {umare:"youseitukai", gi:"5", tai:"6", sin:"10"}, {umare:"mazintukai", gi:"6", tai:"6", sin:"9"}, {umare:"sinradousi", gi:"5", tai:"6", sin:"10"}, {umare:"kisyu", gi:"8", tai:"8", sin:"5"}, {umare:"renkinzyutusi", gi:"7", tai:"6", sin:"8"}, {umare:"boukensya", gi:"2d", tai:"2d", sin:"2d"}, {umare:"mazintukaiBM", gi:"3", tai:"8", sin:"10"}, {umare:"tentitukaiBM", gi:"5", tai:"9", sin:"7"}, {umare:"renkinzyutusiBM", gi:"8", tai:"5", sin:"8"}, {umare:"odorikoBM", gi:"10", tai:"6", sin:"5"}, {umare:"kisyuBM", gi:"6", tai:"8", sin:"7"}, {umare:"gunsiBM", gi:"8", tai:"6", sin:"7"}, {umare:"sinradousiBM", gi:"4", tai:"7", sin:"10"}]};
+			table.eruhu={japanese:"エルフ", dice:[2, 2, 1, 2, 2, 2], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"kensi", gi:"12", tai:"5", sin:"9"}, {umare:"yakusi", gi:"10", tai:"5", sin:"11"}, {umare:"sinkan", gi:"9", tai:"5", sin:"12"}, {umare:"soureizyutusi", gi:"9", tai:"4", sin:"13"}, {umare:"mazyutusi", gi:"10", tai:"3", sin:"13"}, {umare:"syasyu", gi:"13", tai:"5", sin:"8"}, {umare:"rentaisi", gi:"11", tai:"5", sin:"10"}, {umare:"mittei", gi:"12", tai:"4", sin:"10"}, {umare:"youseitukai", gi:"10", tai:"2", sin:"14"}, {umare:"kentousi", gi:"11", tai:"4", sin:"11"}, {umare:"ginyuusizin", gi:"9", tai:"3", sin:"14"}, {umare:"mazintukai", gi:"10", tai:"4", sin:"12"}, {umare:"sinradousi", gi:"8", tai:"5", sin:"13"}, {umare:"kisyu", gi:"12", tai:"6", sin:"8"}, {umare:"mazintukaiBM", gi:"9", tai:"4", sin:"13"}, {umare:"tentitukaiBM", gi:"10", tai:"4", sin:"12"}, {umare:"odorikoBM", gi:"13", tai:"5", sin:"8"}, {umare:"gunsiBM", gi:"11", tai:"4", sin:"11"}, {umare:"sinradousiBM", gi:"10", tai:"3", sin:"13"},{umare:"gunsiAR",gi:"10",tai:"6",sin:"10"},{umare:"tentitukaiAR",gi:"10",tai:"5",sin:"11"},{umare:"madousiAR",gi:"9",tai:"3",sin:"14"},{umare:"sinradousiAR",gi:"9",tai:"4",sin:"13"},{umare:"mazintukaiAR",gi:"9",tai:"5",sin:"12"}]};
+			table.dowahu={japanese:"ドワーフ", dice:[2, 1, 2, 2, 1, 2], fix:[6, 0, 0, 0, 0, 6], born:[{umare:"syasyu", gi:"6", tai:"8", sin:"6"}, {umare:"sensi", gi:"4", tai:"11", sin:"5"}, {umare:"kentousi", gi:"5", tai:"10", sin:"5"}, {umare:"sinkan", gi:"4", tai:"7", sin:"9"}, {umare:"madoukisi", gi:"6", tai:"7", sin:"7"}, {umare:"gakusya", gi:"3", tai:"8", sin:"9"}, {umare:"nobuse", gi:"6", tai:"9", sin:"5"}, {umare:"rentaisi", gi:"5", tai:"9", sin:"6"}, {umare:"ginyuusizin", gi:"4", tai:"8", sin:"8"}, {umare:"youseitukai", gi:"5", tai:"6", sin:"9"}, {umare:"sinradousi", gi:"4", tai:"7", sin:"9"}, {umare:"kisyu", gi:"4", tai:"10", sin:"6"}, {umare:"renkinzyutusi", gi:"5", tai:"9", sin:"6"}, {umare:"tentitukaiBM", gi:"6", tai:"6", sin:"8"}, {umare:"renkinzyutusiBM", gi:"6", tai:"7", sin:"7"}, {umare:"odorikoBM", gi:"6", tai:"10", sin:"4"}, {umare:"kisyuBM", gi:"5", tai:"9", sin:"6"}, {umare:"gunsiBM", gi:"5", tai:"8", sin:"7"}, {umare:"mazintukaiBM", gi:"5", tai:"6", sin:"11"}, {umare:"tentitukaiBM", gi:"5", tai:"8", sin:"9"}, {umare:"sinradousiBM", gi:"7", tai:"5", sin:"10"}, {umare:"gunsiBM", gi:"8", tai:"6", sin:"8"}, {umare:"renkinzyutusiBM", gi:"7", tai:"7", sin:"8"}]};
+			table.tabitto={japanese:"タビット", dice:[1, 1, 1, 2, 2, 2], fix:[0, 0, 0, 0, 6, 0], born:[{umare:"soureizyutusi", gi:"6", tai:"6", sin:"10"}, {umare:"mazyutusi", gi:"5", tai:"7", sin:"10"}, {umare:"gakusya", gi:"5", tai:"8", sin:"9"}, {umare:"madoukisi", gi:"8", tai:"5", sin:"9"}, {umare:"madousi", gi:"5", tai:"6", sin:"11"}, {umare:"youseitukai", gi:"7", tai:"5", sin:"10"}, {umare:"ginyuusizin", gi:"6", tai:"7", sin:"9"}, {umare:"yakusi", gi:"7", tai:"6", sin:"9"}, {umare:"mazintukai", gi:"6", tai:"6", sin:"10"}, {umare:"sinradousi", gi:"5", tai:"6", sin:"11"}, {umare:"renkinzyutusi", gi:"6", tai:"7", sin:"9"}, {umare:"mazintukaiBM", gi:"5", tai:"6", sin:"11"}, {umare:"tentitukaiBM", gi:"5", tai:"8", sin:"9"}, {umare:"sinradousiBM", gi:"7", tai:"5", sin:"10"}, {umare:"gunsiBM", gi:"8", tai:"6", sin:"8"}, {umare:"renkinzyutusiBM", gi:"7", tai:"7", sin:"8"},{umare:"gunsiAR",gi:"8",tai:"6",sin:"8"},{umare:"mazintukaiAR",gi:"6",tai:"7",sin:"9"},{umare:"sinradousiAR",gi:"7",tai:"5",sin:"10"},{umare:"renkinzyutusiAR",gi:"7",tai:"7",sin:"8"},{umare:"syumizinAR",gi:"6",tai:"8",sin:"8"}]};
+			table.runfoku={japanese:"ルーンフォーク", dice:[2, 1, 2, 2, 2, 1], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"gakusya", gi:"8", tai:"10", sin:"8"}, {umare:"syasyu", gi:"12", tai:"8", sin:"6"}, {umare:"sensi", gi:"9", tai:"12", sin:"5"}, {umare:"madoukisi", gi:"12", tai:"8", sin:"6"}, {umare:"mazyutusi", gi:"9", tai:"8", sin:"9"}, {umare:"mittei", gi:"12", tai:"6", sin:"8"}, {umare:"rentaisi", gi:"10", tai:"8", sin:"8"}, {umare:"keisensi", gi:"11", tai:"9", sin:"6"}, {umare:"ginyuusizin", gi:"8", tai:"9", sin:"9"}, {umare:"soureizyutusi", gi:"7", tai:"9", sin:"10"}, {umare:"mazintukai", gi:"9", tai:"9", sin:"8"}, {umare:"kisyu", gi:"10", tai:"11", sin:"5"}, {umare:"renkinzyutusi", gi:"10", tai:"9", sin:"7"}, {umare:"tentitukaiBM", gi:"10", tai:"10", sin:"6"}, {umare:"renkinzyutusiBM", gi:"11", tai:"8", sin:"7"}, {umare:"odorikoBM", gi:"12", tai:"9", sin:"5"}, {umare:"kisyuBM", gi:"9", tai:"9", sin:"8"}, {umare:"gunsiBM", gi:"10", tai:"8", sin:"8"},{umare:"renkinzyutusiAR",gi:"11",tai:"7",sin:"8"},{umare:"gunsiAR",gi:"11",tai:"7",sin:"8"},{umare:"senbusiAR",gi:"10",tai:"11",sin:"5"},{umare:"tentitukaiAR",gi:"8",tai:"11",sin:"7"},{umare:"mazintukaiAR",gi:"9",tai:"9",sin:"8"}]};
+			table.naitomea={japanese:"ナイトメア", dice:[2, 2, 1, 1, 2, 2], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"mazyutusi", gi:"5", tai:"13", sin:"12"}, {umare:"youhei", gi:"7", tai:"15", sin:"8"}, {umare:"keisensi", gi:"11", tai:"13", sin:"6"}, {umare:"sinkan", gi:"6", tai:"14", sin:"10"}, {umare:"madoukisi", gi:"9", tai:"9", sin:"12"}, {umare:"ginyuusizin", gi:"8", tai:"13", sin:"9"}, {umare:"rentaisi", gi:"9", tai:"14", sin:"7"}, {umare:"syasyu", gi:"10", tai:"10", sin:"10"}, {umare:"nobuse", gi:"9", tai:"12", sin:"9"}, {umare:"soureizyutusi", gi:"6", tai:"11", sin:"13"}, {umare:"mazintukai", gi:"7", tai:"12", sin:"11"}, {umare:"sinradousi", gi:"8", tai:"10", sin:"12"}, {umare:"kisyu", gi:"10", tai:"13", sin:"7"}, {umare:"renkinzyutusi", gi:"11", tai:"9", sin:"10"}, {umare:"mazintukaiBM", gi:"7", tai:"10", sin:"13"}, {umare:"kisyuBM", gi:"10", tai:"12", sin:"8"}, {umare:"odorikoBM", gi:"11", tai:"12", sin:"7"}, {umare:"gunsiBM", gi:"9", tai:"13", sin:"8"}, {umare:"sinradousiBM", gi:"8", tai:"10", sin:"12"},{umare:"gunsiAR",gi:"9",tai:"12",sin:"9"},{umare:"senbusiAR",gi:"11",tai:"11",sin:"8"},{umare:"mazintukaiAR",gi:"11",tai:"7",sin:"12"},{umare:"sinradousiAR",gi:"7",tai:"10",sin:"13"},{umare:"tentitukaiAR",gi:"10",tai:"10",sin:"10"}]};
+			table.rikanto={japanese:"リカント", dice:[1, 1, 2, 2, 1, 1], fix:[0, 3, 0, 0, 6, 0], born:[{umare:"mittei", gi:"13", tai:"5", sin:"7"}, {umare:"sensi", gi:"10", tai:"9", sin:"6"}, {umare:"kentousi", gi:"11", tai:"7", sin:"7"}, {umare:"keisensi", gi:"12", tai:"6", sin:"7"}, {umare:"nobuse", gi:"9", tai:"8", sin:"8"}, {umare:"ginyuusizin", gi:"8", tai:"9", sin:"8"}, {umare:"syasyu", gi:"11", tai:"8", sin:"6"}, {umare:"rentaisi", gi:"10", tai:"8", sin:"7"}, {umare:"gakusya", gi:"10", tai:"7", sin:"8"}, {umare:"sinkan", gi:"9", tai:"7", sin:"9"}, {umare:"sinradousi", gi:"9", tai:"7", sin:"9"}, {umare:"kisyu", gi:"11", tai:"8", sin:"6"}, {umare:"tentitukaiBM", gi:"10", tai:"7", sin:"8"}, {umare:"renkinzyutusiBM", gi:"12", tai:"7", sin:"6"}, {umare:"odorikoBM", gi:"13", tai:"6", sin:"6"}, {umare:"kisyuBM", gi:"10", tai:"8", sin:"7"}, {umare:"gunsiBM", gi:"9", tai:"9", sin:"7"},{umare:"gunsiAR",gi:"9",tai:"9",sin:"7"},{umare:"renkinzyutusiAR",gi:"10",tai:"8",sin:"7"},{umare:"senbusiAR",gi:"12",tai:"7",sin:"6"},{umare:"mazintukaiAR",gi:"10",tai:"7",sin:"8"},{umare:"kisyuAR",gi:"11",tai:"8",sin:"6"}]};
+			table.rirudoraken={japanese:"リルドラケン", dice:[1, 2, 2, 2, 1, 2], fix:[0, 0, 0, 6, 0, 0], born:[{umare:"nobuse", gi:"6", tai:"12", sin:"7"}, {umare:"kentousi", gi:"6", tai:"13", sin:"6"}, {umare:"sensi", gi:"5", tai:"14", sin:"6"}, {umare:"syounin", gi:"5", tai:"11", sin:"9"}, {umare:"sinkan", gi:"4", tai:"13", sin:"8"}, {umare:"syasyu", gi:"7", tai:"12", sin:"6"}, {umare:"keisensi", gi:"6", tai:"11", sin:"8"}, {umare:"rentaisi", gi:"5", tai:"12", sin:"8"}, {umare:"mahoutukai", gi:"4", tai:"12", sin:"9"}, {umare:"youseitukai", gi:"3", tai:"12", sin:"10"}, {umare:"mazintukai", gi:"5", tai:"12", sin:"8"}, {umare:"sinradousi", gi:"4", tai:"12", sin:"9"}, {umare:"kisyu", gi:"6", tai:"13", sin:"6"}, {umare:"renkinzyutusi", gi:"5", tai:"13", sin:"7"}, {umare:"tentitukaiBM", gi:"4", tai:"13", sin:"8"}, {umare:"renkinzyutusiBM", gi:"5", tai:"13", sin:"7"}, {umare:"odorikoBM", gi:"6", tai:"14", sin:"5"}, {umare:"gunsiBM", gi:"5", tai:"12", sin:"8"}, {umare:"sinradousiBM", gi:"5", tai:"11", sin:"9"},{umare:"renkinzyutusiAR",gi:"6",tai:"12",sin:"7"},{umare:"gunsiAR",gi:"5",tai:"12",sin:"8"},{umare:"senbusiAR",gi:"7",tai:"13",sin:"5"},{umare:"sinradousiAR",gi:"6",tai:"10",sin:"9"},{umare:"tentitukaiAR",gi:"11",tai:"8",sin:""}]};
+			table.gurasuranna={japanese:"グラスランナー", dice:[2, 2, 1, 2, 1, 2], fix:[0, 0, 0, 6, 0, 6], born:[{umare:"nusutto", gi:"13", tai:"0", sin:"12"}, {umare:"keisensi", gi:"14", tai:"1", sin:"10"}, {umare:"nobuse", gi:"12", tai:"1", sin:"12"}, {umare:"syasyu", gi:"14", tai:"0", sin:"11"}, {umare:"syumizin", gi:"12", tai:"0", sin:"13"}, {umare:"gakusya", gi:"11", tai:"1", sin:"13"}, {umare:"kentousi", gi:"14", tai:"2", sin:"9"}, {umare:"tabibito", gi:"11", tai:"2", sin:"12"}, {umare:"mittei", gi:"15", tai:"0", sin:"10"}, {umare:"ginyuusizin", gi:"12", tai:"0", sin:"13"}, {umare:"kisyu", gi:"13", tai:"1", sin:"11"}, {umare:"renkinzyutusi", gi:"13", tai:"0", sin:"12"}, {umare:"tentitukaiBM", gi:"11", tai:"1", sin:"13"}, {umare:"renkinzyutusiBM", gi:"12", tai:"1", sin:"12"}, {umare:"odorikoBM", gi:"13", tai:"1", sin:"11"}, {umare:"kisyuBM", gi:"12", tai:"0", sin:"13"}, {umare:"gunsiBM", gi:"11", tai:"1", sin:"13"},{umare:"yakusiAR",gi:"13",tai:"1",sin:"11"},{umare:"gunsiAR",gi:"12",tai:"2",sin:"11"},{umare:"senbusiAR",gi:"13",tai:"2",sin:"10"},{umare:"tentitukaiAR",gi:"11",tai:"0",sin:"14"},{umare:"renkinzyutusi(AR)",gi:"13",tai:"1",sin:"11"}]};
+			table.meria={japanese:"メリア", dice:[1, 1, 1, 2, 1, 1], fix:[0, 0, 0, 6, 0, 0], born:[{umare:"nobuse", gi:"9", tai:"8", sin:"12"}, {umare:"sinkan", gi:"8", tai:"8", sin:"13"}, {umare:"youseitukai", gi:"8", tai:"7", sin:"14"}, {umare:"mazyutusi", gi:"8", tai:"6", sin:"15"}, {umare:"soureizyutusi", gi:"7", tai:"6", sin:"16"}, {umare:"syasyu", gi:"10", tai:"7", sin:"12"}, {umare:"keisensi", gi:"10", tai:"8", sin:"11"}, {umare:"madousi", gi:"8", tai:"5", sin:"16"}, {umare:"ginyuusizin", gi:"7", tai:"7", sin:"15"}, {umare:"rentaisi", gi:"9", tai:"9", sin:"11"}, {umare:"mazintukai", gi:"7", tai:"7", sin:"15"}, {umare:"sinradousi", gi:"6", tai:"7", sin:"16"}, {umare:"kisyu", gi:"8", tai:"9", sin:"12"}, {umare:"renkinzyutusi", gi:"9", tai:"7", sin:"13"}, {umare:"mazintukaiBM", gi:"7", tai:"8", sin:"14"}, {umare:"tentitukaiBM", gi:"8", tai:"9", sin:"12"}, {umare:"odorikoBM", gi:"9", tai:"8", sin:"12"}, {umare:"gunsiBM", gi:"8", tai:"8", sin:"13"}, {umare:"sinradousiBM", gi:"7", tai:"7", sin:"15"},{umare:"senbusiAR",gi:"9",tai:"8",sin:"12"},{umare:"gunsiAR",gi:"7",tai:"9",sin:"13"},{umare:"sinradousiAR",gi:"6",tai:"7",sin:"16"},{umare:"tentitukaiAR",gi:"9",tai:"6",sin:"14"},{umare:"mazintukaiAR",gi:"7",tai:"7",sin:"15"}]};
+			table.thiensu={japanese:"ティエンス", dice:[2, 2, 1, 1, 2, 2], fix:[0, 0, 0, 3, 0, 3], born:[{umare:"kisyu", gi:"10", tai:"11", sin:"7"}, {umare:"kentousi", gi:"9", tai:"13", sin:"6"}, {umare:"sensi", gi:"8", tai:"12", sin:"8"}, {umare:"sinkan", gi:"7", tai:"12", sin:"9"}, {umare:"mahoutukai", gi:"6", tai:"12", sin:"10"}, {umare:"syasyu", gi:"11", tai:"12", sin:"5"}, {umare:"mittei", gi:"10", tai:"10", sin:"8"}, {umare:"mahousensi", gi:"9", tai:"11", sin:"8"}, {umare:"youseitukai", gi:"7", tai:"11", sin:"10"}, {umare:"gakusya", gi:"8", tai:"11", sin:"9"}, {umare:"mazintukai", gi:"7", tai:"12", sin:"9"}, {umare:"sinradousi", gi:"8", tai:"10", sin:"10"}, {umare:"renkinzyutusi", gi:"9", tai:"11", sin:"8"}, {umare:"mazintukaiBM", gi:"7", tai:"11", sin:"10"}, {umare:"tentitukaiBM", gi:"8", tai:"11", sin:"9"}, {umare:"odorikoBM", gi:"10", tai:"13", sin:"5"}, {umare:"gunsiBM", gi:"9", tai:"11", sin:"8"}, {umare:"sinradousiBM", gi:"6", tai:"12", sin:"10"},{umare:"tentitukaiAR", gi:"10", tai:"8", sin:"10"},{umare:"gunsiAR", gi:"9", tai:"12", sin:"7"},{umare:"senbusiAR", gi:"10", tai:"12", sin:"6"},{umare:"mazintukaiAR", gi:"9", tai:"10", sin:"9"},{umare:"sinradousiAR", gi:"8", tai:"10", sin:"10"}]};
+			table.repurakan={japanese:"レプラカーン", dice:[2, 1, 2, 2, 2, 2], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"keisensi", gi:"13", tai:"5", sin:"5"}, {umare:"syasyu", gi:"12", tai:"6", sin:"5"}, {umare:"mittei", gi:"14", tai:"4", sin:"5"}, {umare:"youseitukai", gi:"11", tai:"4", sin:"8"}, {umare:"renkinzyutusi", gi:"11", tai:"5", sin:"7"}, {umare:"nobuse", gi:"12", tai:"5", sin:"6"}, {umare:"syumizin", gi:"13", tai:"4", sin:"6"}, {umare:"madoukisi", gi:"12", tai:"4", sin:"7"}, {umare:"sinkan", gi:"10", tai:"5", sin:"8"}, {umare:"madousi", gi:"11", tai:"3", sin:"9"}, {umare:"mahoutukai", gi:"12", tai:"4", sin:"7"}, {umare:"sinradousi", gi:"11", tai:"4", sin:"8"}, {umare:"kisyu", gi:"13", tai:"6", sin:"4"}, {umare:"mazintukaiBM", gi:"11", tai:"3", sin:"9"}, {umare:"tentitukaiBM", gi:"10", tai:"6", sin:"7"}, {umare:"odorikoBM", gi:"13", tai:"5", sin:"5"}, {umare:"renkinzyutusiBM", gi:"14", tai:"4", sin:"5"}, {umare:"sinradousiBM", gi:"12", tai:"3", sin:"8"},{umare:"gunsiAR", gi:"13", tai:"5", sin:"5"},{umare:"tentitukaiAR", gi:"12", tai:"5", sin:"6"},{umare:"senbusiAR", gi:"14", tai:"5", sin:"4"},{umare:"sinradousiAR", gi:"11", tai:"4", sin:"8"},{umare:"mazintukaiAR", gi:"12", tai:"6", sin:"5"}]};
+			table.aruvu={japanese:"アルブ", dice:[1, 1, 2, 2, 1, 1], fix:[0, 3, 3, 0, 6, 0], born:[{umare:"mittei", gi:"12", tai:"5", sin:"8"}, {umare:"keisensi", gi:"12", tai:"6", sin:"7"}, {umare:"mahoutukai", gi:"9", tai:"5", sin:"11"}, {umare:"sinkan", gi:"10", tai:"6", sin:"9"}, {umare:"gakusya", gi:"10", tai:"5", sin:"10"}, {umare:"syasyu", gi:"13", tai:"4", sin:"8"}, {umare:"kentousi", gi:"11", tai:"7", sin:"7"}, {umare:"soureizyutusi", gi:"9", tai:"4", sin:"12"}, {umare:"mazintukai", gi:"9", tai:"6", sin:"10"}, {umare:"madoukisi", gi:"9", tai:"7", sin:"9"}, {umare:"tentitukaiBM", gi:"11", tai:"6", sin:"8"}, {umare:"odorikoBM", gi:"13", tai:"5", sin:"7"}, {umare:"gunsiBM", gi:"10", tai:"6", sin:"9"}]};
+			table.wikuringu={japanese:"ウィークリング", dice:[2, 2, 2, 2, 2, 2], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"sekkou", gi:"10", tai:"7", sin:"6"}, {umare:"keisensi", gi:"9", tai:"8", sin:"6"}, {umare:"sensi", gi:"8", tai:"10", sin:"5"}, {umare:"sinkan", gi:"7", tai:"9", sin:"7"}, {umare:"mahoutukai", gi:"7", tai:"8", sin:"8"}, {umare:"rentaisi", gi:"8", tai:"8", sin:"7"}, {umare:"syasyu", gi:"10", tai:"8", sin:"5"}, {umare:"kentousi", gi:"9", tai:"9", sin:"5"}, {umare:"sinradousi", gi:"7", tai:"7", sin:"9"}, {umare:"mazintukai", gi:"7", tai:"8", sin:"8"}, {umare:"tentitukaiBM", gi:"7", tai:"8", sin:"8"}, {umare:"odorikoBM", gi:"10", tai:"8", sin:"5"}, {umare:"gunsiBM", gi:"9", tai:"7", sin:"7"}]};
+			table.syadou={japanese:"シャドウ", dice:[1, 1, 2, 2, 2, 2], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"nobuse", gi:"15", tai:"6", sin:"6"}, {umare:"kensi", gi:"17", tai:"7", sin:"3"}, {umare:"mittei", gi:"16", tai:"7", sin:"4"}, {umare:"kentousi", gi:"14", tai:"8", sin:"5"}, {umare:"sensi", gi:"15", tai:"9", sin:"3"}, {umare:"madoukisi", gi:"17", tai:"5", sin:"5"}, {umare:"syasyu", gi:"18", tai:"6", sin:"3"}, {umare:"rentaisi", gi:"16", tai:"6", sin:"5"}, {umare:"renkinzyutusi", gi:"14", tai:"8", sin:"5"}, {umare:"kisyu", gi:"13", tai:"7", sin:"7"}, {umare:"tentitukaiBM", gi:"14", tai:"6", sin:"7"}, {umare:"odorikoBM", gi:"17", tai:"7", sin:"3"}, {umare:"gunsiBM", gi:"15", tai:"8", sin:"4"}]};
+			table.soreiyu={japanese:"ソレイユ", dice:[1, 2, 1, 2, 1, 2], fix:[0, 0, 6, 0, 0, 0], born:[{umare:"sinkan", gi:"9", tai:"13", sin:"4"}, {umare:"keisensi", gi:"12", tai:"12", sin:"2"}, {umare:"sensi", gi:"10", tai:"15", sin:"1"}, {umare:"kentousi", gi:"12", tai:"14", sin:"0"}, {umare:"nobuse", gi:"10", tai:"13", sin:"3"}, {umare:"syasyu", gi:"11", tai:"14", sin:"1"}, {umare:"kisyu", gi:"11", tai:"13", sin:"2"}, {umare:"renkinzyutusi", gi:"10", tai:"11", sin:"5"}, {umare:"syumizin", gi:"11", tai:"11", sin:"4"}, {umare:"sekkou", gi:"12", tai:"11", sin:"3"}, {umare:"tentitukaiBM", gi:"10", tai:"12", sin:"4"}, {umare:"odorikoBM", gi:"12", tai:"13", sin:"1"}, {umare:"gunsiBM", gi:"11", tai:"12", sin:"3"}]};
+			table.supurigan={japanese:"スプリガン", dice:[1, 2, 1, 1, 2, 1], fix:[0, 0, 0, 0, 0, 0], born:[{umare:"mittei", gi:"11", tai:"9", sin:"8"}, {umare:"keisensi", gi:"12", tai:"9", sin:"7"}, {umare:"sensi", gi:"10", tai:"12", sin:"6"}, {umare:"kentousi", gi:"11", tai:"12", sin:"5"}, {umare:"nobuse", gi:"11", tai:"11", sin:"6"}, {umare:"syasyu", gi:"13", tai:"9", sin:"6"}, {umare:"kisyu", gi:"9", tai:"11", sin:"8"}, {umare:"senbusi", gi:"12", tai:"10", sin:"6"}, {umare:"rentaisi", gi:"11", tai:"10", sin:"7"}, {umare:"sinkan", gi:"10", tai:"9", sin:"9"}]};
+			table.abisuborn={japanese:"アビスボーン", dice:[2, 1, 1, 2, 2, 1], fix:[0, 0, 6, 0, 0, 0], born:[{umare:"nobuse", gi:"8", tai:"10", sin:"9"}, {umare:"mittei", gi:"11", tai:"7", sin:"9"}, {umare:"youhei", gi:"8", tai:"11", sin:"8"}, {umare:"mahoutukai", gi:"6", tai:"8", sin:"13"}, {umare:"madoukisi", gi:"9", tai:"9", sin:"9"}, {umare:"gakusya", gi:"6", tai:"10", sin:"11"}, {umare:"keisensi", gi:"11", tai:"6", sin:"10"}, {umare:"senbusi", gi:"10", tai:"8", sin:"9"}, {umare:"sinradousi", gi:"7", tai:"8", sin:"12"}, {umare:"mazintukai", gi:"8", tai:"6", sin:"13"}, {umare:"ginyuusizin", gi:"5", tai:"7", sin:"15"}]};
+			table.furouraito={japanese:"フロウライト", dice:[2, 2, 2, 2, 1, 2], fix:[0, 0, 6, 0, 0, 6], born:[{umare:"sensi", gi:"7", tai:"3", sin:"9"}, {umare:"mazyutusi", gi:"7", tai:"0", sin:"12"}, {umare:"madousi", gi:"6", tai:"0", sin:"13"}, {umare:"soureizyutusi", gi:"5", tai:"1", sin:"13"}, {umare:"gakusya", gi:"7", tai:"1", sin:"11"}, {umare:"mahousensi", gi:"7", tai:"2", sin:"10"}, {umare:"sinkan", gi:"6", tai:"3", sin:"10"}, {umare:"youseitukai", gi:"5", tai:"1", sin:"13"}, {umare:"sinradousi", gi:"5", tai:"2", sin:"12"}, {umare:"mazintukai", gi:"6", tai:"1", sin:"12"}]};
+			table.darkdowahu={japanese:"ダークドワーフ", dice:[2, 1, 2, 1, 1, 2], fix:[6, 0, 0, 0, 0, 6], born:[{umare:"sinkan", gi:"6", tai:"10", sin:"10"}, {umare:"kentousi", gi:"8", tai:"12", sin:"6"}, {umare:"sensi", gi:"7", tai:"11", sin:"8"}, {umare:"madoukisi", gi:"8", tai:"10", sin:"8"}, {umare:"nobuse", gi:"9", tai:"10", sin:"7"}, {umare:"kisyu", gi:"8", tai:"11", sin:"7"}, {umare:"renkinzyutusi", gi:"9", tai:"9", sin:"8"}, {umare:"senbusi", gi:"9", tai:"11", sin:"6"}, {umare:"gunsi", gi:"8", tai:"9", sin:"9"}, {umare:"mazintukai", gi:"8", tai:"8", sin:"10"}]};
+			const syuzokutable=Object.keys(table);
 
-			var table=[ningen,eruhu,dowahu,tabitto,runfoku,naitomea,rikanto,rirudoraken,gurasuranna,meria,thiensu,repurakan,aruvu,wikuringu,syadou,soreiyu]
-
-			for(value of table){
-				var position=document.getElementById(value[0])
-				var string=""
-				for(var i=1;i<value.length;i++){
+			for(value of syuzokutable){
+				let position=document.getElementById("hyou");
+				const dice=table[value].dice;
+				const fix=table[value].fix;
+				let string=`<table><tbody><tr><th colspan="5">${table[value].japanese}</th></tr></tbody><tr class="cell"><th>生まれ</th><th>技能</th><th>技<br>${dice[0]}d+${fix[0]}/${dice[1]}d+${fix[1]}</th><th>体<br>${dice[2]}d+${fix[2]}/${dice[3]}d+${fix[3]}</th><th>心<br>${dice[4]}d+${fix[4]}/${dice[5]}d+${fix[5]}</th></th>`;
+				for(let i=0;i<table[value].born.length;i++){
+					const data=table[value].born[i]
 					string+="<tr"
-					if(i%2==0) string+=" class=\"cell\""
-					string+="><td><a href=\"https://shizuku16.github.io/syoki_setting/?syuzoku="+value[0]+"&umare="+value[i][0]+"\">"+value[i][1]+"</a></td><td>"+value[i][2]+"</td><td>"+value[i][3]+"</td><td>"+value[i][4]+"</td><td>"+value[i][5]+"</td></tr>"}
-				string+="<tr><td colspan=\"5\"  class=\"blind\">　</td></tr>"
-
-				position.insertAdjacentHTML("afterend",string)
+					if(i%2==0) string+=` class="cell"`;
+					string+=`><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=${value}&umare=${data.umare}">${get(data.umare,table[value].japanese,"japanese")}</a></td><td>${get(data.umare,table[value].japanese,"ginou")}</td><td>${data.gi}</td><td>${data.tai}</td><td>${data.sin}</td></tr>`
+				}
+				string+=`</table>`
+				string=string.replace(/\+0/g,"")
+				position.insertAdjacentHTML("beforeend",string)
 			}
+		}
+
+		function get(umare,syuzoku,type){
+			const data={};
+			data.boukensya={japanese: "冒険者", ginou: "なし"};
+			data.gakusya={japanese: "学者", ginou: "セージ"};
+			data.ginyuusizin={japanese: "吟遊詩人", ginou: "バード"};
+			data.gunsi={japanese: "軍師", ginou: "ウォーリーダー"};
+			data.ippanzin={japanese: "一般人", ginou: "なし"};
+			data.kazin={japanese: "歌人", ginou: "バード"};
+			data.keisensi={japanese: "軽戦士", ginou: "フェンサー"};
+			if(syuzoku=="エルフ"||syuzoku=="ナイトメア") data.keisensi.ginou="フェンサーandスカウト";
+			data.kensi={japanese: "剣士", ginou: "フェンサー"};
+			data.kentousi={japanese: "拳闘士", ginou: "グラップラー"};
+			data.kisyu={japanese: "騎手", ginou: "ライダー"};
+			data.madoukisi={japanese: "魔動機師", ginou: "マギテック"};
+			data.madousi={japanese: "魔導師", ginou: "ソーサラーandコンジャラー"};
+			data.mahousensi={japanese: "魔法戦士", ginou: "ファイターandソーサラー"};
+			data.mahoutukai={japanese: "魔法使い", ginou: "ソーサラー"};
+			if(syuzoku=="リルドラケン"||syuzoku=="アビスボーン") data.mahoutukai.ginou="ソーサラーorコンジャラー";
+			data.mazintukai={japanese: "魔神使い", ginou: "デーモンルーラー"};
+			data.mazyutusi={japanese: "魔術師", ginou: "ソーサラー"};
+			data.mittei={japanese: "密偵", ginou: "スカウト"};
+			if(syuzoku=="グラスランナー") data.mittei.ginou="フェンサーandスカウト";
+			data.nobuse={japanese: "野伏", ginou: "レンジャー"};
+			data.nusutto={japanese: "盗っ人", ginou: "スカウト"};
+			data.odoriko={japanese: "踊り子", ginou: "バトルダンサー"};
+			data.renkinzyutusi={japanese: "錬金術師", ginou: "アルケミスト"};
+			data.rentaisi={japanese: "錬体士", ginou: "エンハンサー"};
+			data.sekkou={japanese: "斥候", ginou: "スカウト"};
+			data.senbusi={japanese: "戦舞士", ginou: "バトルダンサー"};
+			data.sensi={japanese: "戦士", ginou: "ファイター"};
+			if(syuzoku=="ルーンフォーク") data.sensi.ginou="ファイターorグラップラー";
+			data.sinkan={japanese: "神官", ginou: "プリースト"};
+			data.sinradousi={japanese: "森羅導師", ginou: "ドルイド"};
+			data.soureizyutusi={japanese: "操霊術師", ginou: "コンジャラー"};
+			data.syasyu={japanese: "射手", ginou: "シューター"};
+			data.syounin={japanese: "商人", ginou: "セージ"};
+			data.syumizin={japanese: "趣味人", ginou: "バード"};
+			if(syuzoku=="グラスランナー") data.syumizin.ginou="セージorバード";
+			else if(syuzoku=="レプラカーン") data.syumizin.ginou="セージandバード";
+			data.tabibito={japanese: "旅人", ginou: "なし"};
+			data.tentitukai={japanese: "天地使い", ginou: "ジオマンサー"};
+			data.yakusi={japanese: "薬師", ginou: "セージandレンジャー"};
+			if(syuzoku=="タビット") data.yakusi.ginou="レンジャー";
+			data.youhei={japanese: "傭兵", ginou: "ファイターorグラップラー"};
+			data.youseitukai={japanese: "妖精使い", ginou: "フェアリーテイマー"};
+			const keylist=Object.keys(data);
+			const key=keylist.find(e=>umare.startsWith(e));
+			if(umare!=key) data[key].japanese+="("+umare.replace(key,"")+")"
+			return data[key][type];
 		}
 	</script>
 	
 	</head>
 	<body onload="load()">
-	<form name="form1" class="hyou">
+	<form name="form1" class="hyou" id="hyou">
 	
-	<table>
-	<tbody><tr><th colspan="5"  align="center">人間</th></tr></tbody>
-	<tr class="cell" id="ningen"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></th>
-	</table>
-	
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">エルフ</th></tr></tbody>
-	<tr class="cell" id="eruhu"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/2d</th><th>心<br>2d/2d</th></tr>
-	</table>
-	
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">ドワーフ</th></tr></tbody>
-	<tr class="cell" id="dowahu"><th>生まれ</th><th>技能</th><th>技<br>2d+6/1d</th><th>体<br>2d/2d</th><th>心<br>1d/2d+6</th></th>
-	</table>
-	
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">タビット</th></tr></tbody>
-	<tr class="cell" id="tabitto"><th>生まれ</th><th>技能</th><th>技<br>1d/1d</th><th>体<br>1d/2d</th><th>心<br>2d+6/2d</th></th>
-	</table>
-	
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">ルーンフォーク</th></tr></tbody>
-	<tr class="cell" id="runfoku"><th>生まれ</th><th>技能</th><th>技<br>2d/1d</th><th>体<br>2d/2d</th><th>心<br>2d/1d</th></th>
-	</table>
-	
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">ナイトメア</th></tr></tbody>
-	<tr class="cell" id="naitomea"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/1d</th><th>心<br>2d/2d</th></th>
-	</table>
-	
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">リカント</th></tr></tbody>
-	<tr class="cell" id="rikanto"><th>生まれ</th><th>技能</th><th>技<br>1d/1d+3</th><th>体<br>2d/2d</th><th>心<br>1d+6/1d</th></th>
-	</table>
-	
-	　　
-	
-	<table>
-	<tbody><tr><th colspan="5"  align="center">リルドラケン</th></tr></tbody>
-	<tr class="cell" id="rirudoraken"><th>生まれ</th><th>技能</th><th>技<br>1d/2d</th><th>体<br>2d/2d+6</th><th>心<br>1d/2d</th></th>
-	</table>
-	
-	　　
-	
-	<table>
-	<tbody><tr><th colspan="5"  align="center">グラスランナー</th></tr></tbody>
-	<tr class="cell" id="gurasuranna"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/2d+6</th><th>心<br>1d/2d+6</th></th>
-	</table>
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">メリア</th></tr></tbody>
-	<tr class="cell" id="meria"><th>生まれ</th><th>技能</th><th>技<br>1d/1d</th><th>体<br>1d/2d+6</th><th>心<br>1d/1d</th></th>
-	</table>
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">ティエンス</th></tr></tbody>
-	<tr class="cell" id="thiensu"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>1d/1d+3</th><th>心<br>2d/2d+3</th></tr>
-	</table>
-	　　
-	<table>
-		<tbody><tr><th colspan="5"  align="center">レプラカーン</th></tr></tbody>
-		<tr class="cell" id="repurakan"><th>生まれ</th><th>技能</th><th>技<br>2d/1d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></tr>
-	</table>
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">アルヴ</th></tr></tbody>
-	<tr class="cell" id="aruvu"><th>生まれ</th><th>技能</th><th>技<br>1d/1d+3</th><th>体<br>2d+3/2d</th><th>心<br>1d+6/1d</th></tr>
-	</table>
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">ウィークリング</th></tr></tbody>
-	<tr class="cell" id="wikuringu"><th>生まれ</th><th>技能</th><th>技<br>2d/2d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></tr>
-	</table>
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">シャドウ</th></tr></tbody>
-	<tr class="cell" id="syadou"><th>生まれ</th><th>技能</th><th>技<br>1d/1d</th><th>体<br>2d/2d</th><th>心<br>2d/2d</th></tr>
-	</table>
-	　　
-	<table>
-	<tbody><tr><th colspan="5"  align="center">ソレイユ</th></tr></tbody>
-	<tr class="cell" id="soreiyu"><th>生まれ</th><th>技能</th><th>技<br>1d/2d</th><th>体<br>1d+6/2d</th><th>心<br>1d/2d</th></tr>
-	</table>
-	
-	
-	<br>
 	</form>
 	</body>
 	</html>
