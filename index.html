@@ -12,21 +12,23 @@
 		table{
 			border-collapse:collapse;
 			padding: 10px;
+			width: 0;
+			white-space: nowrap;
 		}
 		.cell {
 			background-color: #dcdcdc;
 			color: #000000;
 		}
 		.hyou  {
-		display:flex;
-		flex-wrap: wrap;
-		gap: 40px 20px;
-		padding-bottom: 20px;
-		max-width: 1250;
+			display:flex;
+			flex-wrap: wrap;
+			gap: 40px 20px;
+			padding-bottom: 20px;
+			max-width: 1250;
 		}
 		@media(max-width: 600px){
 			table{
-				min-width: 90%;
+				font-size: 10%;
 			}
 			.hyou{
 				flex-flow: column;
