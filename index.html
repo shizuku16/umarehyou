@@ -3,48 +3,8 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<title>種族能力値</title>
-	<style>
-		tr.isBarbaros{
-			background-color: rgb(255, 0, 0);
-			color: white;
-		}
-		td,th{border:solid 1px #aaaaaa;padding:1px 10px}
-		table{
-			border-collapse:collapse;
-			padding: 10px;
-			width: 0;
-			white-space: nowrap;
-		}
-		.cell {
-			background-color: #dcdcdc;
-			color: #000000;
-		}
-		.hyou  {
-			display:flex;
-			flex-wrap: wrap;
-			gap: 40px 20px;
-			padding-bottom: 20px;
-			max-width: 1250;
-		}
-		@media(max-width: 600px){
-			table{
-				font-size: 10%;
-			}
-			.hyou{
-				flex-flow: column;
-			}
-		}
-		
-		.blind{
-		border-bottom: 3px solid white;
-		border-left: 3px solid white;
-		border-right: 3px solid white;
-		}
-		.footer{
-			height: 50px;
-		}
-	
-	</style>
+	<link rel="stylesheet" href="./style.css" type="text/css">
+	<script src="./script.js"></script>
 	
 	<script>
 		function load(){
@@ -91,13 +51,15 @@
 				for(let i=0;i<table[value].born.length;i++){
 					const data=table[value].born[i]
 					string+="<tr"
-					if(i%2==0) string+=` class="cell"`;
+					//if(i%2==0) string+=` class="cell"`;
 					string+=`><td><a href="https://shizuku16.github.io/syoki_setting/?syuzoku=${value}&umare=${data.umare}">${get(data.umare,table[value].japanese,"japanese")}</a></td><td>${get(data.umare,table[value].japanese,"ginou")}</td><td>${data.gi}</td><td>${data.tai}</td><td>${data.sin}</td></tr>`
 				}
 				string+=`</table>`
 				string=string.replace(/\+0/g,"")
 				position.insertAdjacentHTML("beforeend",string)
 			}
+
+			SetFilter();
 		}
 
 		function get(umare,syuzoku,type){

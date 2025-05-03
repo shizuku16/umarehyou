@@ -1,0 +1,60 @@
+tr.isBarbaros{
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+td,th{border:solid 1px #aaaaaa;padding:1px 10px}
+table{
+    border-collapse:collapse;
+    padding: 10px;
+    width: 0;
+    white-space: nowrap;
+}
+.cell {
+    background-color: #dcdcdc;
+    color: #000000;
+}
+.hyou  {
+    display:flex;
+    flex-wrap: wrap;
+    gap: 40px 20px;
+    padding-bottom: 20px;
+    max-width: 1250;
+}
+@media(max-width: 600px){
+    .hyou{
+        flex-flow: column;
+        max-width: 100%;
+    }
+}
+
+.blind{
+border-bottom: 3px solid white;
+border-left: 3px solid white;
+border-right: 3px solid white;
+}
+.footer{
+    height: 50px;
+}
+
+
+
+
+th .filter-icon { cursor: pointer; margin-left: 4px; font-size: 0.8em; user-select: none; }
+th.filtered { background-color: #eef; }
+.column-filter-dropdown {
+  position: absolute; background: white; border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); max-height: 260px;
+  overflow: auto; padding: 8px; z-index: 1000; width: 200px;
+}
+.column-filter-search {
+  width: 100%; box-sizing: border-box; margin: 6px 0; padding: 4px;
+}
+.column-filter-dropdown label { display: block; margin-bottom: 4px; cursor: pointer; }
+.column-sort-options {
+  border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-bottom: 6px;
+}
+.column-sort-options label { display: block; font-size: 0.9em; }
+
+tr:nth-child(odd) td {
+    background-color: #dcdcdc;
+}
