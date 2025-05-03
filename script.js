@@ -113,33 +113,56 @@ function SetFilter(){
 
         // ── 値一覧チェックリスト ──
         const list = document.createElement('div');
+        //後付けしたせいでスコープをうまい感じにするのが面倒なので、スコープを避ける為だけのif
+        if(true){
+            const label = document.createElement('label');
+            const cb = document.createElement('input');
+            cb.type    = 'checkbox';
+            cb.value   = '(すべて選択)';
+            cb.checked = true;
+            cb.id      = 'allCheckBox';
+            // ここでイベントを追加
+            cb.addEventListener('change', (e) => {
+                document.querySelectorAll('input[type=checkbox]').forEach(box=>{
+                    box.checked=e.target.checked;
+                })
+            });
+            label.appendChild(cb);
+            label.appendChild(document.createTextNode(' (すべて選択)'));
+            list.appendChild(label);
+        }
+        let allCheckFlg=true;
         allValues.forEach(val => {
             const label = document.createElement('label');
             const cb = document.createElement('input');
             cb.type    = 'checkbox';
             cb.value   = val;
             cb.checked = filterSelections[colIndex].has(val);
+            if(!cb.checked) allCheckFlg=false;
             label.appendChild(cb);
             label.appendChild(document.createTextNode(' ' + val));
             list.appendChild(label);
         });
         dropdown.appendChild(list);
         document.body.appendChild(dropdown);
+        document.getElementById('allCheckBox').checked=allCheckFlg;
 
         // フィルター適用関数
         const applyFilter = () => {
             const checked = Array.from(
-            list.querySelectorAll('input:checked')
+                list.querySelectorAll('input:checked')
             ).map(cb => cb.value);
             filterSelections[colIndex] = new Set(checked);
             originalOrder.forEach(r => {
-            const txt = r.cells[colIndex].textContent.trim();
-            r.style.display = checked.includes(txt) ? '' : 'none';
+                const txt = r.cells[colIndex].textContent.trim();
+                //r.style.display = checked.includes(txt) ? '' : 'none';
+                const matched = checked.includes(txt);
+                r.style.visibility = matched ? 'visible' : 'collapse';
             });
             if (checked.length === allValues.length) {
-            th.classList.remove('filtered');
+                th.classList.remove('filtered');
             } else {
-            th.classList.add('filtered');
+                th.classList.add('filtered');
             }
         };
 
@@ -149,7 +172,9 @@ function SetFilter(){
             const kw = search.value.trim().toLowerCase();
             Array.from(list.children).forEach(label => {
             const txt = label.textContent.trim().toLowerCase();
-            label.style.display = txt.includes(kw) ? '' : 'none';
+            //label.style.display = txt.includes(kw) ? '' : 'none';
+            const matched = checked.includes(txt);
+            r.style.visibility = matched ? 'visible' : 'collapse';
             });
         });
         });
